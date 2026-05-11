@@ -4,6 +4,7 @@ from Patch import create_rom_file
 from worlds.LauncherComponents import Component, components, SuffixIdentifier, Type, launch
 
 from ..common import GAME_NAME
+from ..items import items
 from .patch import MorrowindPatch
 from .dialogue import get_dialogue_data
 
@@ -19,6 +20,7 @@ def generate_output(world, output_directory: str) -> None:
     )
 
     patch.dialogue_data = get_dialogue_data(world)
+    patch.items_data = {item_data.id: (item_data.recordId, item_data.count) for item_data in items.values()}
     patch.write()
 
 

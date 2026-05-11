@@ -1,10 +1,6 @@
 import collections
 import importlib
 
-from Utils import cache_argsless
-
-from ..items import items
-
 
 def _recursive_list_files(traversable) -> collections.abc.Iterator[str]:
     for file in traversable.iterdir():
@@ -15,15 +11,14 @@ def _recursive_list_files(traversable) -> collections.abc.Iterator[str]:
             yield file.name
 
 
-def _generate_lua_items_data() -> str:
+def _generate_lua_items_data(items_data: dict[int, tuple[str, int]]) -> str:
     yield 'return {\n'
-    for item_name, item_data in items.items():
-        yield '    [' + str(item_data.id) + '] = {"' + item_data.recordId + '", ' + str(item_data.count) + '},\n'
+    for item_id, (item_record_id, item_count) in items_data.items():
+        yield '    [' + str(item_id) + '] = {"' + item_record_id + '", ' + str(item_count) + '},\n'
     yield '}\n'
 
 
-@cache_argsless
-def get_scripts() -> dict[str, bytes]:
+def get_scripts(items_data: dict[int, tuple[str, int]]) -> dict[str, bytes]:
     files_ressource = importlib.resources.files(__name__).joinpath('files')
     files_list = list(_recursive_list_files(files_ressource))
 
@@ -32,6 +27,6 @@ def get_scripts() -> dict[str, bytes]:
     for file in _recursive_list_files(files_ressource):
         scripts[file] = files_ressource.joinpath(file).read_bytes()
 
-    scripts['scripts/archipelago/items.lua'] = ''.join(_generate_lua_items_data()).encode()
+    scripts['scripts/archipelago/items.lua'] = ''.join(_generate_lua_items_data(items_data)).encode()
 
     return scripts

@@ -39,14 +39,17 @@ class MorrowindPatch(APAutoPatchInterface):
     result_file_ending = ''
 
     dialogue_data: list
+    items_data: dict[int, tuple[str, int]]
 
     def write_contents(self, opened_zipfile) -> None:
         super().write_contents(opened_zipfile)
 
         opened_zipfile.writestr('dialogue.json', json.dumps(self.dialogue_data))
+        opened_zipfile.writestr('items.json', json.dumps(self.items_data))
 
     def read_contents(self, opened_zipfile) -> dict:
         self.dialogue_data = json.load(io.BytesIO(opened_zipfile.read('dialogue.json')))
+        self.items_data = json.load(io.BytesIO(opened_zipfile.read('items.json')))
 
         return super().read_contents(opened_zipfile)
 
@@ -57,7 +60,7 @@ class MorrowindPatch(APAutoPatchInterface):
         tes3conv_path = get_settings().morrowind_options.tes3conv_path
 
         # Write scripts
-        for file_name, file_data in get_scripts().items():
+        for file_name, file_data in get_scripts(self.items_data).items():
             file_path = os.path.join(target, file_name)
 
             os.makedirs(os.path.dirname(file_path), exist_ok=True)

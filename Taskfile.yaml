@@ -1,7 +1,20 @@
 version: '3'
 
+dotenv: ['.env']
+
 tasks:
   build:
     cmd: ./scripts/build.sh
   install:
-    cmd: cp ./output/morrowind.apworld ~/.local/share/Archipelago/worlds/
+    deps: [build]
+    cmd: cp ./output/morrowind.apworld "$ARCHIPELAGO_USER_DIR/worlds"
+  generate:template:
+    deps: [install]
+    cmd: $ARCHIPELAGO_COMMAND 'Generate Template Options' -- --skip_open_folder
+  generate:seed:
+    deps: [install, generate:template]
+    cmd: |
+      DIR=$(mktemp --directory)
+      cp "$ARCHIPELAGO_USER_DIR/Players/Templates/The Elder Scrolls III Morrowind.yaml" "$DIR/"
+      $ARCHIPELAGO_COMMAND Generate -- --player_files_path "$DIR/" --outputpath ./output
+      rm --recursive "$DIR"
