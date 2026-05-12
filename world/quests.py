@@ -23,3 +23,8 @@ class VivecInformants(Quest):
 class ZainsubaniInformant(Quest):
     Started = 'Zainsubani Informant started'
     Completed = 'Zainsubani Informant completed'
+
+
+class MeetSulMatuul(Quest):
+    Started = 'Meet Sul-Matuul started'
+    Completed = 'Meet Sul-Matuul completed'

@@ -1,7 +1,7 @@
 from rule_builder.rules import Has, HasAll
 
 from ..locations import LocationData, DialogueLocationData
-from ..quests import AntabolisInformant, GraMuzgobInformant, VivecInformants, ZainsubaniInformant
+from ..quests import AntabolisInformant, MeetSulMatuul, GraMuzgobInformant, VivecInformants, ZainsubaniInformant
 
 name = 'Balmora'
 
@@ -39,11 +39,18 @@ locations = {
         events=[VivecInformants.Completed],
     ),
     'Zainsubani Informant start': DialogueLocationData(
-        rule=Has('Vivec Informants completed'),
+        rule=Has(VivecInformants.Completed),
         events=[ZainsubaniInformant.Started],
         items=['100 Gold'],
         topic_id='Orders',
         response_id='443826593117014513',
+    ),
+    'Meet Sul-Matuul start': DialogueLocationData(
+        rule=Has(ZainsubaniInformant.Completed),
+        events=[MeetSulMatuul.Started],
+        items=['200 Gold', 'Decoded package'],
+        topic_id='Orders',
+        response_id='25246150001870514559',
     ),
     # Sharn gra-Muzgob
     'Gra-Muzgob notes': DialogueLocationData(
