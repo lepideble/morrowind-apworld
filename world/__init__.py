@@ -45,8 +45,8 @@ class MorrowindWorld(World):
         self.multiworld.regions.append(vvardenfell)
 
     def create_items(self) -> None:
-        for item_name in items.keys():
-            self.multiworld.itempool.append(self.create_item(item_name))
+        for location_name, location_data in locations.items():
+            self.multiworld.itempool.append(self.create_item(location_data.original_item))
 
     def create_item(self, name: str) -> None:
         return MorrowindItem(name, items[name].classification, items[name].id, self.player)
