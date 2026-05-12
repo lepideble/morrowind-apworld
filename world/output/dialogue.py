@@ -3,7 +3,8 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 
 from ..items import items
-from ..locations import locations, DialogueLocationData
+from ..locations import DialogueLocationData
+from ..regions import location_name_to_data
 
 
 def get_dialogue_data(world) -> dict:
@@ -13,7 +14,7 @@ def get_dialogue_data(world) -> dict:
         if location.address is None:
             continue
 
-        location_data = locations[location.name]
+        region_data, location_data, original_item = location_name_to_data[location.name]
 
         if not isinstance(location_data, DialogueLocationData):
             continue
@@ -28,7 +29,7 @@ def get_dialogue_data(world) -> dict:
         dialogue_data[location_data.topic_id][location_data.response_id].append({
             'item_id': f'ap_{location.address}',
             'item_name': item_name,
-            'original_item_id': items[location_data.original_item].recordId,
+            'original_item_id': items[original_item].recordId,
         })
 
     return dialogue_data
