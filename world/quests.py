@@ -28,3 +28,8 @@ class ZainsubaniInformant(Quest):
 class MeetSulMatuul(Quest):
     Started = 'Meet Sul-Matuul started'
     Completed = 'Meet Sul-Matuul completed'
+
+
+class SixthHouseBase(Quest): # A2_2_6thHouse
+    Started = 'Sixth House Base started' # 5
+    Completed = 'Sixth House Base completed' # 50

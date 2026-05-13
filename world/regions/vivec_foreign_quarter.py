@@ -1,6 +1,6 @@
 from rule_builder.rules import Has, HasAll
 
-from ..locations import LocationData, DialogueLocationData
+from ..locations import DialogueLocationData
 from ..quests import AntabolisInformant, GraMuzgobInformant, VivecInformants, ZainsubaniInformant
 
 name = 'Vivec, Foreign Quarter'
