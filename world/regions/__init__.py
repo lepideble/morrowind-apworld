@@ -1,12 +1,14 @@
 from itertools import count
 
 from ..util import enumerate_names
-from . import ald_ruhn, balmora, urshilaku_camp, vivec_foreign_quarter
+from . import ald_ruhn, balmora, bitter_coast, tel_fyr, urshilaku_camp, vivec_foreign_quarter
 
 
 regions = [
     ald_ruhn,
     balmora,
+    bitter_coast,
+    tel_fyr,
     urshilaku_camp,
     vivec_foreign_quarter,
 ]

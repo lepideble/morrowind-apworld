@@ -1,7 +1,7 @@
 from rule_builder.rules import Has, HasAll
 
 from ..locations import LocationData, DialogueLocationData
-from ..quests import AntabolisInformant, MeetSulMatuul, GraMuzgobInformant, SixthHouseBase, VivecInformants, ZainsubaniInformant
+from ..quests import AntabolisInformant, CorprusCure, MeetSulMatuul, GraMuzgobInformant, SixthHouseBase, VivecInformants, ZainsubaniInformant
 
 name = 'Balmora'
 
@@ -58,6 +58,13 @@ locations = {
         items=['400 Gold'],
         topic_id='Orders',
         response_id='1457411711895630236',
+    ),
+    'Corprus Cure start': DialogueLocationData(
+        rule=Has(SixthHouseBase.Completed),
+        events=[CorprusCure.Started],
+        items=['Dwemer Coherer', '1000 Gold', '3 Quality Rising Force Potion'],
+        topic_id='Orders',
+        response_id='1774027995387524122',
     ),
     # Sharn gra-Muzgob
     'Gra-Muzgob notes': DialogueLocationData(
