@@ -26,6 +26,7 @@ local quest_stage = {}
 
 --This helps save the received list across instances
 Received = Received or {}
+local isGoalCompleted = false
 
 
 
@@ -244,26 +245,37 @@ local function isConnected()
     return true
 end
 
-local function getConnection()
-    return connection
-end
-
 SendLocation = function(location)
   --This is an event received from Global.lua except for quests
   --Quests will have 3000 added to their archipelago id for simplicity in dealing with ids
   connection:LocationChecks({location})
 end
 
+local setGoalCompleted = function()
+    isGoalCompleted = true
 
-
-
-Load = function(savedData)
-  --On Loading a save it replaces Received with either {} or the saved List
-  Received = savedData or Received
+    if isConnected() then
+        connection:StatusUpdate(APClient.ClientStatus.GOAL)
+    end
 end
 
-Save = function()
-  return Received
+-- TODO: retry sending goal status on connection if not sent?
+-- TODO: add a seed check to prevent accidently release by loading the wrong save?
+
+local onSave = function()
+    return {
+        received = Received,
+        completed = isGoalCompleted,
+    }
+end
+
+local onLoad = function(data)
+    if data and data.received ~= nil then
+        Received = data.received
+    end
+    if data and data.completed ~= nil then
+        isGoalCompleted = data.completed
+    end
 end
 
 return {
@@ -272,12 +284,11 @@ return {
         connect = connect,
         disconnect = disconnect,
         isConnected = isConnected,
-        getConnection = getConnection
+        setGoalCompleted = setGoalCompleted
     },
     engineHandlers = {
-        onLoad = Load,
-        onSave = Save,
-  
+        onSave = onSave,
+        onLoad = onLoad,
         onUpdate = function()
             if connection ~= nil then
                 connection:poll()

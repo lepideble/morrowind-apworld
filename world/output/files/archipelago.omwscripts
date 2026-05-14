@@ -1,4 +1,5 @@
 GLOBAL: scripts/archipelago/global.lua
-PLAYER: scripts/archipelago/player.lua
 GLOBAL: scripts/archipelago/receive.lua
+PLAYER: scripts/archipelago/completion.lua
+PLAYER: scripts/archipelago/player.lua
 PLAYER: scripts/archipelago/settings.lua
