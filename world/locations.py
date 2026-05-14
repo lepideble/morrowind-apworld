@@ -14,4 +14,4 @@ class LocationData:
 @dataclass
 class DialogueLocationData(LocationData):
     topic_id: str = field(kw_only=True)
-    response_id: str = field(kw_only=True)
+    response_id: str | list[str] = field(kw_only=True)

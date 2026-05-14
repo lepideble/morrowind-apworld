@@ -1,10 +1,12 @@
 from BaseClasses import Item, Location, Region
+from rule_builder.rules import Has
 from worlds.AutoWorld import World
 
 from .common import GAME_NAME
 from .items import items
 from .options import MorrowindOptions
 from .output import generate_output
+from .quests import TheCitadelsOfTheSixthHouse
 from .regions import regions, location_name_to_id
 from .settings import MorrowindSettings
 from .util import enumerate_names
@@ -44,7 +46,7 @@ class MorrowindWorld(World):
 
             for location_name, location_data in region_data.locations.items():
                 for name, event in enumerate_names(f'{location_name} event', location_data.events):
-                    region.add_event(location_name=name, item_name=event, rule=location_data.rule)
+                    region.add_event(location_name=name, item_name=event, rule=location_data.rule, show_in_spoiler=False)
 
                 for name, item in enumerate_names(location_name, location_data.items):
                     location = MorrowindLocation(self.player, name, location_name_to_id[name], region)
@@ -53,6 +55,9 @@ class MorrowindWorld(World):
                     self.set_rule(location, location_data.rule)
 
                     self.multiworld.itempool.append(self.create_item(item))
+
+    def set_rules(self) -> None:
+        self.set_completion_rule(Has(TheCitadelsOfTheSixthHouse.Completed))
 
     def create_item(self, name: str) -> None:
         return MorrowindItem(name, items[name].classification, items[name].id, self.player)

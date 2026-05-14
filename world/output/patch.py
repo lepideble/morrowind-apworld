@@ -11,28 +11,6 @@ from .dialogue import get_dialogue_records
 from .scripts import get_scripts
 
 
-# def generate_omwaddon_data(world) -> list[dict]:
-#     objects = []
-#     objects += get_dialog_data()
-#     objects += get_locations_data(world)
-
-#     return [
-#         {
-#             'type': 'Header',
-#             'flags': '',
-#             'version': 1.3,
-#             'file_type': 'Esp',
-#             'author': 'Archipelago',
-#             'description': 'Archipelago mod for morrowind',
-#             'num_objects': len(objects),
-#             'masters': [
-#                 ['Morrowind.esm', 79837557],
-#             ],
-#         },
-#         *objects,
-#     ]
-
-
 class MorrowindPatch(APAutoPatchInterface):
     game = GAME_NAME
     patch_file_ending = '.apmw'

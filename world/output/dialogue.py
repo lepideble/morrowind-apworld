@@ -26,11 +26,17 @@ def get_dialogue_data(world) -> dict:
         else:
             item_name = f"{world.multiworld.get_player_name(item.player)}'s {item.name}"
 
-        dialogue_data[location_data.topic_id][location_data.response_id].append({
-            'item_id': f'ap_{location.address}',
-            'item_name': item_name,
-            'original_item_id': items[original_item].recordId,
-        })
+        if isinstance(location_data.response_id, list):
+            response_ids = location_data.response_id
+        else:
+            response_ids = [location_data.response_id]
+
+        for response_id in response_ids:
+            dialogue_data[location_data.topic_id][response_id].append({
+                'item_id': f'ap_{location.address}',
+                'item_name': item_name,
+                'original_item_id': items[original_item].recordId,
+            })
 
     return dialogue_data
 
