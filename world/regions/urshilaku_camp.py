@@ -1,7 +1,7 @@
 from rule_builder.rules import Has
 
 from ..locations import LocationData, DialogueLocationData
-from ..quests import MeetSulMatuul, MehraMiloAndTheLostProphecies, ThePathOfTheIncarnate
+from ..quests import MeetSulMatuul, MehraMiloAndTheLostProphecies, ThePathOfTheIncarnate, UrshilakuNerevarine
 
 name = 'Urshilaku Camp'
 
@@ -18,5 +18,12 @@ locations = {
         events=[ThePathOfTheIncarnate.Started],
         topic_id='lost prophecies',
         response_id='1756732638309928813',
+    ),
+    'Named Urshilaku Nerevarine': DialogueLocationData(
+        rule=Has(ThePathOfTheIncarnate.Completed),
+        events=[UrshilakuNerevarine.Completed],
+        items=['Teeth of the Urshilaku'],
+        topic_id='Urshilaku Nerevarine',
+        response_id='31000125462503519757',
     ),
 }

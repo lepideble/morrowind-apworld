@@ -52,20 +52,39 @@ class ThePathOfTheIncarnate(Quest): # A2_6_Incarnate
     Completed = 'The Path of the Incarnate completed' # 50
 
 
-# TODO: Hlaalu Hortator
-# TODO: Redoran Hortator
-# TODO: Telvanni Hortator
+class HlaaluHortator(Quest):
+    Completed = 'Hlaalu Hortator: completed'
 
 
-# TODO: Ahemmusa Nerevarine
-# TODO: Erabenimsun Nerevarine
-# TODO: Urshilaku Nerevarine
-# TODO: Zainab Nerevarine
+class RedoranHortator(Quest):
+    Completed = 'Redoran Hortator: completed'
+
+
+class TelvanniHortator(Quest):
+    Completed = 'Telvanni Hortator: completed'
+
+
+class AhemmusaNerevarine(Quest): # B2_AhemmusaSafe
+    Completed = 'Ahemmusa Nerevarine completed' # 50
+
+
+class ErabenimsunNerevarine(Quest): # B4_KillWarLovers
+    Completed = 'Erabenimsun Nerevarine completed' # 50
+
+
+class UrshilakuNerevarine(Quest): # B1_UnifyUrshilaku
+    Completed = 'Urshilaku Nerevarine completed' # 50
+
+
+class ZainabNerevarine(Quest): # B3_ZainabBride
+    Completed = 'Zainab Nerevarine completed' # 50
 
 
 class HortatorAndNerevarine(Quest): # B8_MeetVivec
-    Started = 'Hortator and Nerevarine started' # 1
-    Completed = 'Hortator and Nerevarine completed' # 50
+    NamedHortator = 'Hortator and Nerevarine: named hortator' # B8_All_Hortator 50
+    NamedNerevarine = 'Hortator and Nerevarine: named nerevarine' # B8_All_Nerevarine 50
+    MeetArchcanonSaryoni = 'Hortator and Nerevarine: meet Archcanon Saryoni' # 30
+    Completed = 'Hortator and Nerevarine: completed' # 50
 
 
 class TheCitadelsOfTheSixthHouse(Quest): # C3_DestroyDagoth
