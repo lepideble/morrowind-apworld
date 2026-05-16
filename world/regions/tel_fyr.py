@@ -23,7 +23,7 @@ locations = {
         rule=Has(CorprusCure.DivaythFyrFetchBoots),
         events=[CorprusCure.YagrumBagarnGaveBoots],
         items=['Dwemer Boots of Flying'],
-        topic_id='Dwemer boots',
+        topic='Dwemer boots',
         response_id='11310263561489620560',
     ),
 }

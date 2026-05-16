@@ -11,7 +11,7 @@ locations = {
         rule=Has(ZainsubaniInformant.Started),
         events=[ZainsubaniInformant.Completed],
         items=['Zainsubani\'s Notes'],
-        topic_id='Ashlanders',
+        topic='Ashlanders',
         response_id='169562763275484215',
     ),
 }

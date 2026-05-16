@@ -38,6 +38,7 @@ items = {
     'Zainsubani\'s Notes': ItemData(ItemClassification.filler, 'bk_a1_11_zainsubaninotes'),
     # Equipment
     'Dwemer Boots of Flying': ItemData(ItemClassification.progression, 'dwemer_boots of flying'),
+    'Madstone of the Ahemmusa': ItemData(ItemClassification.useful, 'madstone'),
     'Ring of the Hortator': ItemData(ItemClassification.useful, 'hortatorring'),
     'Teeth of the Urshilaku': ItemData(ItemClassification.useful, 'teeth'),
     'Wraithguard': ItemData(ItemClassification.progression, 'wraithguard'),

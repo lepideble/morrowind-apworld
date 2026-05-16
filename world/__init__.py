@@ -44,7 +44,7 @@ class MorrowindWorld(World):
             vvardenfell.connect(region)
             self.multiworld.regions.append(vvardenfell)
 
-            for location_name, location_data in region_data.locations.items():
+            for location_name, location_data in getattr(region_data, 'locations', {}).items():
                 for name, event in enumerate_names(f'{location_name} event', location_data.events):
                     region.add_event(location_name=name, item_name=event, rule=location_data.rule, show_in_spoiler=False)
 

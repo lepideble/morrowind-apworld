@@ -32,7 +32,7 @@ def get_dialogue_data(world) -> dict:
             response_ids = [location_data.response_id]
 
         for response_id in response_ids:
-            dialogue_data[location_data.topic_id][response_id].append({
+            dialogue_data[location_data.topic][response_id].append({
                 'item_id': f'ap_{location.address}',
                 'item_name': item_name,
                 'original_item_id': items[original_item].recordId,
@@ -44,7 +44,7 @@ def get_dialogue_data(world) -> dict:
 def get_dialogue_records(morrowind_data: list, dialogue_data: dict) -> list:
     records = []
 
-    for topic_id, responses_data in dialogue_data.items():
+    for topic, responses_data in dialogue_data.items():
         for response_id, items_data in responses_data.items():
             for item_data in items_data:
                 records.append({
@@ -62,11 +62,11 @@ def get_dialogue_records(morrowind_data: list, dialogue_data: dict) -> list:
                     },
                 })
 
-    for topic_id, responses_data in dialogue_data.items():
+    for topic, responses_data in dialogue_data.items():
         records.append({
             'type': 'Dialogue',
             'flags': '',
-            'id': topic_id,
+            'id': topic,
             'dialogue_type': 'Topic',
         })
 

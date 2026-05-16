@@ -13,7 +13,7 @@ locations = {
         rule=HasAll(HortatorAndNerevarine.NamedHortator, HortatorAndNerevarine.NamedNerevarine), # TODO: Add logic for the reputation path once we track it
         events=[HortatorAndNerevarine.MeetArchcanonSaryoni],
         items=['Archcanon\'s Private Key', 'Secret Palace Entrance Key'],
-        topic_id='Temple\'s doctrine',
+        topic='Temple\'s doctrine',
         response_id=['14850115581371211982', '8324178951345231004'],
     ),
     # Vivec
@@ -21,7 +21,7 @@ locations = {
         rule=HasAll(HortatorAndNerevarine.MeetArchcanonSaryoni, 'Secret Palace Entrance Key'),
         events=[HortatorAndNerevarine.Completed],
         items=['Wraithguard'],
-        topic_id='business',
+        topic='business',
         response_id=['1389871372227023138', '22053304572540420424'],
     ),
 }

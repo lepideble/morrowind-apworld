@@ -8,10 +8,6 @@ from ..quests import AhemmusaNerevarine, ErabenimsunNerevarine, HlaaluHortator, 
 name = '__placeholders__'
 
 locations = {
-    'AhemmusaNerevarine': LocationData(
-        rule=Has(ThePathOfTheIncarnate.Completed),
-        events=[AhemmusaNerevarine.Completed]
-    ),
     'ErabenimsunNerevarine': LocationData(
         rule=Has(ThePathOfTheIncarnate.Completed),
         events=[ErabenimsunNerevarine.Completed]

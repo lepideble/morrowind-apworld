@@ -17,6 +17,10 @@ def render_script(script_text: str) -> str:
     return indent('\n'.join(script_text.splitlines()), indentation)
 
 
+def remove_comments(script_text: str) -> str:
+    return '\n'.join((line for line in script_text.splitlines() if not line.startswith(';')))
+
+
 def render_comparison(filter: dict) -> str:
     match filter['comparison']:
         case 'Equal':
@@ -35,7 +39,7 @@ def render_comparison(filter: dict) -> str:
     return f'{sign} {filter['value']['data']}'
 
 
-def print_dialog(speaker: str|None, journal: str|None, topic: str|None):
+def print_dialog(speaker: str|None, journal: str|None, set_journal: str|None, topic: str|None):
     with open(path.join(path.dirname(path.dirname(__file__)), 'data', 'Morrowind.json')) as file:
         morrowind_records = json_load(file)
 
@@ -56,10 +60,13 @@ def print_dialog(speaker: str|None, journal: str|None, topic: str|None):
             for filter in record['filters']:
                 if filter['filter_type'] == 'Journal' and filter['function'] == 'JournalType' and filter['id'] == journal:
                     found = True
-            if journal in record['script_text']:
+            if journal in remove_comments(record['script_text']):
                 found = True
             if not found:
                 continue
+
+        if set_journal is not None and set_journal not in remove_comments(record['script_text']):
+            continue
 
         if topic is not None and topic != current_topic:
             continue
@@ -85,6 +92,8 @@ def print_dialog(speaker: str|None, journal: str|None, topic: str|None):
                     conditions.append(f'player reputation {render_comparison(filter)}')
                 case ('Function', 'PcSex'):
                     conditions.append(f'player sex {render_comparison(filter)}')
+                case ('Function', 'PcSpeechcraft'):
+                    conditions.append(f'player sperchcraft {render_comparison(filter)}')
                 case ('Function', 'TalkedToPc'):
                     conditions.append(f'player talked to speaker {render_comparison(filter)}')
                 case ('Item', 'ItemType'):
@@ -125,6 +134,7 @@ def print_dialog(speaker: str|None, journal: str|None, topic: str|None):
 
 parser = ArgumentParser()
 parser.add_argument('--journal', help='Filter entries that have either a condition or set the corresponding journal')
+parser.add_argument('--set-journal', help='Filter entries that set the corresponding journal')
 parser.add_argument('--topic')
 parser.add_argument('--speaker')
 

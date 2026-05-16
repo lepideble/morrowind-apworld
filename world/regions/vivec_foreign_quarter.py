@@ -10,7 +10,7 @@ locations = {
     'Huleeya notes': DialogueLocationData(
         rule=Has(VivecInformants.Started),
         items=['Notes from Huleeya'],
-        topic_id='Nerevarine cult',
+        topic='Nerevarine cult',
         response_id='678171652181916488',
     ),
 }

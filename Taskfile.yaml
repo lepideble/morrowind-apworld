@@ -5,12 +5,15 @@ dotenv: ['.env']
 tasks:
   build:
     cmd: ./scripts/build.sh
+    run: once
   install:
     deps: [build]
     cmd: cp ./output/morrowind.apworld "$ARCHIPELAGO_USER_DIR/worlds"
+    run: once
   generate:template:
     deps: [install]
     cmd: $ARCHIPELAGO_COMMAND 'Generate Template Options' -- --skip_open_folder
+    run: once
   generate:seed:
     deps: [install, generate:template]
     cmd: |
