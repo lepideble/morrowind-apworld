@@ -96,6 +96,8 @@ def print_dialog(speaker: str|None, journal: str|None, set_journal: str|None, to
                     conditions.append(f'player sperchcraft {render_comparison(filter)}')
                 case ('Function', 'TalkedToPc'):
                     conditions.append(f'player talked to speaker {render_comparison(filter)}')
+                case ('Global', 'VariableCompare'):
+                    conditions.append(f'global variable {filter['id']} {render_comparison(filter)}')
                 case ('Item', 'ItemType'):
                     conditions.append(f'player has item {filter['id']} count {render_comparison(filter)}')
                 case ('Journal', 'JournalType'):
