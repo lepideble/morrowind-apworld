@@ -37,11 +37,13 @@ items = {
     'The Stranger': ItemData(ItemClassification.filler, 'bk_a2_1_thestranger'),
     'Zainsubani\'s Notes': ItemData(ItemClassification.filler, 'bk_a1_11_zainsubaninotes'),
     # Equipment
+    'Ashkhan\'s Wedding Gift': ItemData(ItemClassification.filler, 'exquisite_shirt_01_wedding'),
     'Dwemer Boots of Flying': ItemData(ItemClassification.progression, 'dwemer_boots of flying'),
     'Madstone of the Ahemmusa': ItemData(ItemClassification.useful, 'madstone'),
     'Ring of the Hortator': ItemData(ItemClassification.useful, 'hortatorring'),
     'Teeth of the Urshilaku': ItemData(ItemClassification.useful, 'teeth'),
     'The Seizing of the Erabenimsun': ItemData(ItemClassification.useful, 'seizing'),
+    'Thong of Zainab': ItemData(ItemClassification.useful, 'thong'),
     'Wraithguard': ItemData(ItemClassification.progression, 'wraithguard'),
     # Potions
     '3 Quality Rising Force Potion': ItemData(ItemClassification.useful, 'P_Levitation_Q', 3),

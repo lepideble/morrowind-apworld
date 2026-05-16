@@ -1,7 +1,7 @@
 from . import erabenimsun_camp
 
 
-name = 'Molag Amur Region'
+name = 'Molag Amur region'
 
 
 regions = [
