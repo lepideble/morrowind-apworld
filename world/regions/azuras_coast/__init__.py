@@ -1,4 +1,4 @@
-from . import ald_daedroth, tel_fyr
+from . import ald_daedroth, holamayan, tel_fyr
 
 
 name = 'Azura\'s Coast region'
@@ -6,5 +6,6 @@ name = 'Azura\'s Coast region'
 
 regions = [
     ald_daedroth,
+    holamayan,
     tel_fyr,
 ]

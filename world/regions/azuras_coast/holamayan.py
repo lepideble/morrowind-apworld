@@ -1,9 +1,11 @@
 from rule_builder.rules import Has, HasAll
 
-from ..locations import LocationData, DialogueLocationData
-from ..quests import MehraMiloAndTheLostProphecies
+from ...locations import LocationData, DialogueLocationData
+from ...quests import MehraMiloAndTheLostProphecies
+
 
 name = 'Holamayan'
+
 
 locations = {
     'Mehra Milo and the Lost Prophecies completed': DialogueLocationData(

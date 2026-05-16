@@ -1,9 +1,11 @@
 from rule_builder.rules import Has
 
-from ..locations import LocationData
-from ..quests import SixthHouseBase
+from ...locations import LocationData
+from ...quests import SixthHouseBase
 
-name = 'Bitter Coast Region'
+
+name = 'Ilunibi'
+
 
 locations = {
     'Kill Dagoth Gares': LocationData(

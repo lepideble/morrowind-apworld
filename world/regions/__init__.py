@@ -1,7 +1,7 @@
 from itertools import count
 
 from ..util import enumerate_names
-from . import ascadian_isles, ashlands, azuras_coast, balmora, bitter_coast, cavern_of_the_incarnate, dagoth_ur, grazelands, holamayan, molag_amur
+from . import ascadian_isles, ashlands, azuras_coast, bitter_coast, grazelands, molag_amur, red_mountain, west_gash
 
 
 # Gather all regions an sub regions into an unique list
@@ -17,13 +17,11 @@ _add_regions_recursives([
     ascadian_isles,
     ashlands,
     azuras_coast,
-    balmora,
     bitter_coast,
-    cavern_of_the_incarnate,
-    dagoth_ur,
     grazelands,
-    holamayan,
     molag_amur,
+    red_mountain,
+    west_gash,
 ])
 
 

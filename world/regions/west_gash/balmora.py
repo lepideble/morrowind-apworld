@@ -1,9 +1,11 @@
 from rule_builder.rules import Has, HasAll
 
-from ..locations import LocationData, DialogueLocationData
-from ..quests import AntabolisInformant, CorprusCure, MeetSulMatuul, MehraMiloAndTheLostProphecies, GraMuzgobInformant, SixthHouseBase, VivecInformants, ZainsubaniInformant
+from ...locations import LocationData, DialogueLocationData
+from ...quests import AntabolisInformant, CorprusCure, MeetSulMatuul, MehraMiloAndTheLostProphecies, GraMuzgobInformant, SixthHouseBase, VivecInformants, ZainsubaniInformant
+
 
 name = 'Balmora'
+
 
 locations = {
     # Caius Cosades

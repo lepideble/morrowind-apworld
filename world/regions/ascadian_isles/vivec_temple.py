@@ -1,7 +1,7 @@
 from rule_builder.rules import HasAll
 
 from ...locations import LocationData, DialogueLocationData
-from ...quests import AhemmusaNerevarine, ErabenimsunNerevarine, HortatorAndNerevarine, UrshilakuNerevarine, ZainabNerevarine
+from ...quests import AhemmusaNerevarine, HlaaluHortator, ErabenimsunNerevarine, HortatorAndNerevarine, RedoranHortator, TelvanniHortator, UrshilakuNerevarine, ZainabNerevarine
 
 
 name = 'Vivec, Temple'

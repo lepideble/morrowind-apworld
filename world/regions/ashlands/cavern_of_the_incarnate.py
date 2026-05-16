@@ -1,9 +1,11 @@
 from rule_builder.rules import Has
 
-from ..locations import LocationData
-from ..quests import ThePathOfTheIncarnate
+from ...locations import LocationData
+from ...quests import ThePathOfTheIncarnate
+
 
 name = 'Cavern of the Incarnate'
+
 
 locations = {
     'Pick Moon and Star': LocationData(
