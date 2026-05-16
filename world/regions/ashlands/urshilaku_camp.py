@@ -1,11 +1,14 @@
-from rule_builder.rules import Has
+from rule_builder.rules import Has, HasAll
 
-from ..locations import LocationData, DialogueLocationData
-from ..quests import MeetSulMatuul, MehraMiloAndTheLostProphecies, ThePathOfTheIncarnate, UrshilakuNerevarine
+from ...locations import LocationData, DialogueLocationData
+from ...quests import AhemmusaNerevarine, ErabenimsunNerevarine, HortatorAndNerevarine, MeetSulMatuul, MehraMiloAndTheLostProphecies, ThePathOfTheIncarnate, UrshilakuNerevarine, ZainabNerevarine
+
 
 name = 'Urshilaku Camp'
 
+
 locations = {
+    # Nibani Maesa
     'Meet Sul-Matuul reward': DialogueLocationData(
         rule=Has(MeetSulMatuul.Started),
         events=[MeetSulMatuul.Completed],
@@ -19,6 +22,11 @@ locations = {
         topic='lost prophecies',
         response_id='1756732638309928813',
     ),
+    'Named Nerevarine by Nibani Maesa': LocationData(
+        rule=HasAll(AhemmusaNerevarine.Completed, ErabenimsunNerevarine.Completed, UrshilakuNerevarine.Completed, ZainabNerevarine.Completed),
+        events=[HortatorAndNerevarine.NamedNerevarine],
+    ),
+    # Sul-Matul
     'Named Urshilaku Nerevarine': DialogueLocationData(
         rule=Has(ThePathOfTheIncarnate.Completed),
         events=[UrshilakuNerevarine.Completed],

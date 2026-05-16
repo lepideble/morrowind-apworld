@@ -1,17 +1,13 @@
 from rule_builder.rules import Has, HasAll
 
 from ..locations import LocationData
-from ..quests import AhemmusaNerevarine, ErabenimsunNerevarine, HlaaluHortator, HortatorAndNerevarine, RedoranHortator, TelvanniHortator, ThePathOfTheIncarnate, UrshilakuNerevarine, ZainabNerevarine
+from ..quests import HlaaluHortator, HortatorAndNerevarine, RedoranHortator, TelvanniHortator, ThePathOfTheIncarnate
 
 # Placeholder locations for quest where implementation is not finished
 
 name = '__placeholders__'
 
 locations = {
-    'AllNerevarine': LocationData(
-        rule=HasAll(AhemmusaNerevarine.Completed, ErabenimsunNerevarine.Completed, UrshilakuNerevarine.Completed, ZainabNerevarine.Completed),
-        events=[HortatorAndNerevarine.NamedNerevarine]
-    ),
     'HlaaluHortator': LocationData(
         rule=Has(ThePathOfTheIncarnate.Completed),
         events=[HlaaluHortator.Completed]

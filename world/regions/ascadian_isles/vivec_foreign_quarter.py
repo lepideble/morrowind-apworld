@@ -1,9 +1,11 @@
 from rule_builder.rules import Has, HasAll
 
-from ..locations import DialogueLocationData
-from ..quests import AntabolisInformant, GraMuzgobInformant, VivecInformants, ZainsubaniInformant
+from ...locations import DialogueLocationData
+from ...quests import AntabolisInformant, GraMuzgobInformant, VivecInformants, ZainsubaniInformant
+
 
 name = 'Vivec, Foreign Quarter'
+
 
 locations = {
     # Huleeya

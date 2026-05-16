@@ -1,13 +1,18 @@
 from rule_builder.rules import HasAll
 
-from ..locations import DialogueLocationData
-from ..quests import HortatorAndNerevarine
+from ...locations import LocationData, DialogueLocationData
+from ...quests import AhemmusaNerevarine, ErabenimsunNerevarine, HortatorAndNerevarine, UrshilakuNerevarine, ZainabNerevarine
 
 
 name = 'Vivec, Temple'
 
 
 locations = {
+    # Danso Indules
+    'Named Nerevarine by Danso Indules': LocationData(
+        rule=HasAll(AhemmusaNerevarine.Completed, ErabenimsunNerevarine.Completed, UrshilakuNerevarine.Completed, ZainabNerevarine.Completed),
+        events=[HortatorAndNerevarine.NamedNerevarine],
+    ),
     # Tholer Saryoni
     'Meet Archcanon Saryoni': DialogueLocationData(
         rule=HasAll(HortatorAndNerevarine.NamedHortator, HortatorAndNerevarine.NamedNerevarine), # TODO: Add logic for the reputation path once we track it
