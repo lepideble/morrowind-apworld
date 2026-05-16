@@ -41,6 +41,7 @@ items = {
     'Madstone of the Ahemmusa': ItemData(ItemClassification.useful, 'madstone'),
     'Ring of the Hortator': ItemData(ItemClassification.useful, 'hortatorring'),
     'Teeth of the Urshilaku': ItemData(ItemClassification.useful, 'teeth'),
+    'The Seizing of the Erabenimsun': ItemData(ItemClassification.useful, 'seizing'),
     'Wraithguard': ItemData(ItemClassification.progression, 'wraithguard'),
     # Potions
     '3 Quality Rising Force Potion': ItemData(ItemClassification.useful, 'P_Levitation_Q', 3),

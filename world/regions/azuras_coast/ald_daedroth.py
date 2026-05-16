@@ -8,7 +8,7 @@ name = 'Ald Daedroth'
 
 
 locations = {
-    'Ahemmusa Nerevarine reward': DialogueLocationData(
+    'Ahemmusa Nerevarine: reward': DialogueLocationData(
         rule=Has(ThePathOfTheIncarnate.Completed),
         events=[AhemmusaNerevarine.Completed],
         items=['Madstone of the Ahemmusa'],
