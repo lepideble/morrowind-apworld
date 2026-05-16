@@ -1,9 +1,11 @@
 from rule_builder.rules import Has, HasAll
 
-from ..locations import LocationData, DialogueLocationData
-from ..quests import CorprusCure, SixthHouseBase
+from ...locations import LocationData, DialogueLocationData
+from ...quests import CorprusCure, SixthHouseBase
+
 
 name = 'Tel Fyr'
+
 
 locations = {
     # Divayth Fyr
