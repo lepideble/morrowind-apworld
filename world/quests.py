@@ -52,16 +52,16 @@ class ThePathOfTheIncarnate(Quest): # A2_6_Incarnate
     Completed = 'The Path of the Incarnate completed' # 50
 
 
-class HlaaluHortator(Quest):
-    Completed = 'Hlaalu Hortator: completed'
+class HlaaluHortator(Quest): # B6_HlaaluHort
+    Completed = 'Hlaalu Hortator: completed' # 50
 
 
-class RedoranHortator(Quest):
-    Completed = 'Redoran Hortator: completed'
+class RedoranHortator(Quest): # B5_RedoranHort
+    Completed = 'Redoran Hortator: completed' # 50
 
 
-class TelvanniHortator(Quest):
-    Completed = 'Telvanni Hortator: completed'
+class TelvanniHortator(Quest): # B7_TelvanniHort
+    Completed = 'Telvanni Hortator: completed' # 50
 
 
 class AhemmusaNerevarine(Quest): # B2_AhemmusaSafe

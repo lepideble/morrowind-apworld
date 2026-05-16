@@ -38,6 +38,7 @@ items = {
     'Zainsubani\'s Notes': ItemData(ItemClassification.filler, 'bk_a1_11_zainsubaninotes'),
     # Equipment
     'Ashkhan\'s Wedding Gift': ItemData(ItemClassification.filler, 'exquisite_shirt_01_wedding'),
+    'Belt of the Hortator': ItemData(ItemClassification.useful, 'hortatorbelt'),
     'Dwemer Boots of Flying': ItemData(ItemClassification.progression, 'dwemer_boots of flying'),
     'Madstone of the Ahemmusa': ItemData(ItemClassification.useful, 'madstone'),
     'Ring of the Hortator': ItemData(ItemClassification.useful, 'hortatorring'),
