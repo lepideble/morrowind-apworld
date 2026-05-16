@@ -1,7 +1,7 @@
 from rule_builder.rules import Has, HasAll
 
 from ...locations import LocationData, DialogueLocationData
-from ...quests import AhemmusaNerevarine, ErabenimsunNerevarine, HortatorAndNerevarine, MeetSulMatuul, MehraMiloAndTheLostProphecies, ThePathOfTheIncarnate, UrshilakuNerevarine, ZainabNerevarine
+from ...quests import AhemmusaNerevarine, ErabenimsunNerevarine, HlaaluHortator, HortatorAndNerevarine, MeetSulMatuul, MehraMiloAndTheLostProphecies, RedoranHortator, TelvanniHortator, ThePathOfTheIncarnate, UrshilakuNerevarine, ZainabNerevarine
 
 
 name = 'Urshilaku Camp'
@@ -21,6 +21,10 @@ locations = {
         events=[ThePathOfTheIncarnate.Started],
         topic='lost prophecies',
         response_id='1756732638309928813',
+    ),
+    'Named Hortator by Nibani Maesa': LocationData(
+        rule=HasAll(HlaaluHortator.Completed, RedoranHortator.Completed, TelvanniHortator.Completed),
+        events=[HortatorAndNerevarine.NamedHortator],
     ),
     'Named Nerevarine by Nibani Maesa': LocationData(
         rule=HasAll(AhemmusaNerevarine.Completed, ErabenimsunNerevarine.Completed, UrshilakuNerevarine.Completed, ZainabNerevarine.Completed),

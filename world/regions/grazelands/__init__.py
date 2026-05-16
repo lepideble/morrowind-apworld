@@ -1,9 +1,10 @@
-from . import zainab_camp
+from . import tel_vos, zainab_camp
 
 
 name = 'Grazelands region'
 
 
 regions = [
-    zainab_camp
+    tel_vos,
+    zainab_camp,
 ]

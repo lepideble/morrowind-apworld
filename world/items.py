@@ -42,6 +42,7 @@ items = {
     'Dwemer Boots of Flying': ItemData(ItemClassification.progression, 'dwemer_boots of flying'),
     'Madstone of the Ahemmusa': ItemData(ItemClassification.useful, 'madstone'),
     'Ring of the Hortator': ItemData(ItemClassification.useful, 'hortatorring'),
+    'Robe of the Hortator': ItemData(ItemClassification.useful, 'hortatorrobe'),
     'Teeth of the Urshilaku': ItemData(ItemClassification.useful, 'teeth'),
     'The Seizing of the Erabenimsun': ItemData(ItemClassification.useful, 'seizing'),
     'Thong of Zainab': ItemData(ItemClassification.useful, 'thong'),

@@ -9,9 +9,9 @@ name = 'Vivec, Temple'
 
 locations = {
     # Danso Indules
-    'Named Nerevarine by Danso Indules': LocationData(
-        rule=HasAll(AhemmusaNerevarine.Completed, ErabenimsunNerevarine.Completed, UrshilakuNerevarine.Completed, ZainabNerevarine.Completed),
-        events=[HortatorAndNerevarine.NamedNerevarine],
+    'Named Hortator and Nerevarine by Danso Indules': LocationData(
+        rule=HasAll(HlaaluHortator.Completed, RedoranHortator.Completed, TelvanniHortator.Completed, AhemmusaNerevarine.Completed, ErabenimsunNerevarine.Completed, UrshilakuNerevarine.Completed, ZainabNerevarine.Completed),
+        events=[HortatorAndNerevarine.NamedHortator, HortatorAndNerevarine.NamedNerevarine],
     ),
     # Tholer Saryoni
     'Meet Archcanon Saryoni': DialogueLocationData(
