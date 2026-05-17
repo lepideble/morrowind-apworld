@@ -18,7 +18,7 @@ locations = {
         events=[AntabolisInformant.Started],
     ),
     'Antabolis Informant reward': LocationData(
-        rule=HasAll(AntabolisInformant.Started, 'Hasphat\'s notes for Cosades'),
+        rule=HasAll(AntabolisInformant.GetNotes, 'Hasphat\'s notes for Cosades'),
         events=[AntabolisInformant.Completed],
     ),
     'Gra-Muzgob Informant start': LocationData(
@@ -83,9 +83,16 @@ locations = {
     ),
     # Hasphat Antabolis
     'Antabolis notes': DialogueLocationData(
-        rule=Has(AntabolisInformant.Started),
+        rule=HasAll(AntabolisInformant.Started, 'Dwemer puzzle box'),
+        events=[AntabolisInformant.GetNotes],
         items=['Hasphat\'s notes for Cosades'],
         topic='Sixth House',
         response_id='24786265931023614933',
+    ),
+    'Antabolis Informant: Arkngthand key': DialogueLocationData(
+        rule=Has(AntabolisInformant.Completed),
+        items=['Key to Lower Arkngthand'],
+        topic='Dwemer puzzle box',
+        response_id='2012632121258661882',
     ),
 }

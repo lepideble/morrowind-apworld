@@ -5,8 +5,9 @@ from worlds.LauncherComponents import Component, components, SuffixIdentifier, T
 
 from ..common import GAME_NAME
 from ..items import items
-from .patch import MorrowindPatch
+from .cells import get_cells_data
 from .dialogue import get_dialogue_data
+from .patch import MorrowindPatch
 
 
 def generate_output(world, output_directory: str) -> None:
@@ -19,6 +20,7 @@ def generate_output(world, output_directory: str) -> None:
         world.player_name,
     )
 
+    patch.cells_data = get_cells_data(world)
     patch.dialogue_data = get_dialogue_data(world)
     patch.items_data = {item_data.id: (item_data.recordId, item_data.count) for item_data in items.values()}
     patch.write()

@@ -18,6 +18,7 @@ class ItemData:
 items = {
     # Misc
     'Dwemer Coherer': ItemData(ItemClassification.filler, 'misc_dwrv_artifact50'),
+    'Dwemer puzzle box': ItemData(ItemClassification.progression, 'misc_dwrv_ark_cube00'),
     '100 Gold': ItemData(ItemClassification.filler, 'Gold_001', 100),
     '200 Gold': ItemData(ItemClassification.filler, 'Gold_001', 200),
     '400 Gold': ItemData(ItemClassification.filler, 'Gold_001', 400),
@@ -51,5 +52,6 @@ items = {
     '3 Quality Rising Force Potion': ItemData(ItemClassification.useful, 'P_Levitation_Q', 3),
     # Keys
     'Archcanon\'s Private Key': ItemData(ItemClassification.filler, 'key_archcanon_private'),
+    'Key to Lower Arkngthand': ItemData(ItemClassification.filler, 'misc_dwrv_ark_key00'),
     'Secret Palace Entrance Key': ItemData(ItemClassification.progression, 'key_vivec_secret'),
 }

@@ -5,9 +5,10 @@ class Quest(StrEnum):
     pass
 
 
-class AntabolisInformant(Quest):
-    Started = 'Antabolis Informant started'
-    Completed = 'Antabolis Informant completed'
+class AntabolisInformant(Quest): # A1_2_AntabolisInformant
+    Started = 'Antabolis Informant started' # 1
+    GetNotes = 'Antabolis Informant get notes' # 10, 15
+    Completed = 'Antabolis Informant completed' # 20
 
 
 class GraMuzgobInformant(Quest):

@@ -7,6 +7,7 @@ from settings import get_settings
 from worlds.Files import APAutoPatchInterface
 
 from ..common import GAME_NAME
+from .cells import get_cells_records
 from .dialogue import get_dialogue_records
 from .scripts import get_scripts
 
@@ -16,16 +17,19 @@ class MorrowindPatch(APAutoPatchInterface):
     patch_file_ending = '.apmw'
     result_file_ending = ''
 
+    cells_data: dict[list]
     dialogue_data: list
     items_data: dict[int, tuple[str, int]]
 
     def write_contents(self, opened_zipfile) -> None:
         super().write_contents(opened_zipfile)
 
+        opened_zipfile.writestr('cells.json', json.dumps(self.cells_data))
         opened_zipfile.writestr('dialogue.json', json.dumps(self.dialogue_data))
         opened_zipfile.writestr('items.json', json.dumps(self.items_data))
 
     def read_contents(self, opened_zipfile) -> dict:
+        self.cells_data = json.load(io.BytesIO(opened_zipfile.read('cells.json')))
         self.dialogue_data = json.load(io.BytesIO(opened_zipfile.read('dialogue.json')))
         self.items_data = json.load(io.BytesIO(opened_zipfile.read('items.json')))
 
@@ -53,6 +57,7 @@ class MorrowindPatch(APAutoPatchInterface):
         morrowind_data = json.load(io.BytesIO(morrowind_json.stdout))
 
         records = []
+        records+= get_cells_records(morrowind_data, self.cells_data)
         records+= get_dialogue_records(morrowind_data, self.dialogue_data)
 
         omwaddon_data = json.dumps([

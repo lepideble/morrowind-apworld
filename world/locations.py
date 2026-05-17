@@ -15,3 +15,8 @@ class LocationData:
 class DialogueLocationData(LocationData):
     topic: str = field(kw_only=True)
     response_id: str | list[str] = field(kw_only=True)
+
+
+@dataclass
+class PickableItemLocationData(LocationData):
+    cell: str = field(kw_only=True)
