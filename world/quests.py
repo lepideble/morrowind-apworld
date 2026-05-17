@@ -11,9 +11,10 @@ class AntabolisInformant(Quest): # A1_2_AntabolisInformant
     Completed = 'Antabolis Informant completed' # 20
 
 
-class GraMuzgobInformant(Quest):
+class GraMuzgobInformant(Quest): # A1_4_MuzgobInformant
     Started = 'Gra-Muzgob Informant started'
-    Completed = 'Gra-Muzgob Informant completed'
+    GetNotes = 'Gra-Muzgob Informant get notes' # 15 & 20
+    Completed = 'Gra-Muzgob Informant completed' # 25 | 30
 
 
 class VivecInformants(Quest):

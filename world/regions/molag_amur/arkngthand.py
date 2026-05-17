@@ -11,6 +11,6 @@ locations = {
     'Dwemer puzzle box': PickableItemLocationData(
         rule=Has(AntabolisInformant.Started),
         items=['Dwemer puzzle box'],
-        cell='Arkngthand, Cells of Hollow Hand'
+        cell='Arkngthand, Cells of Hollow Hand',
     ),
 }

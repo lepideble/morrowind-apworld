@@ -78,6 +78,14 @@ def print_dialog(speaker: str|None, journal: str|None, set_journal: str|None, to
                     conditions.append(f'character {filter['id']} is dead')
                 case ('Function', 'Choice'):
                     conditions.append(f'choice {filter['value']['data']}')
+                case ('Function', 'PcCorprus'):
+                    match (filter['comparison'], filter['value']['data']):
+                        case ('Equal', 1) | ('GreaterEqual', 1):
+                            conditions.append(f'player have corpus')
+                        case ('Equal', 0):
+                            conditions.append(f'player doesn\'t have corpus')
+                        case _:
+                            raise Exception('Unexpected corpus condition')
                 case ('Function', 'PcExpelled'):
                     conditions.append('player expelled')
                 case ('Function', 'PcMercantile'):

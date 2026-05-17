@@ -23,6 +23,7 @@ items = {
     '200 Gold': ItemData(ItemClassification.filler, 'Gold_001', 200),
     '400 Gold': ItemData(ItemClassification.filler, 'Gold_001', 400),
     '1000 Gold': ItemData(ItemClassification.filler, 'Gold_001', 1000),
+    'Skull of Llevule Andrano': ItemData(ItemClassification.progression, 'misc_Skull_Llevule'),
     # Books
     'Decoded package': ItemData(ItemClassification.filler, 'bk_a1_1_packagedecoded'),
     'Hasphat\'s notes for Cosades': ItemData(ItemClassification.progression, 'bk_a1_2_antabolistocosades'),
@@ -41,6 +42,7 @@ items = {
     'Ashkhan\'s Wedding Gift': ItemData(ItemClassification.filler, 'exquisite_shirt_01_wedding'),
     'Belt of the Hortator': ItemData(ItemClassification.useful, 'hortatorbelt'),
     'Dwemer Boots of Flying': ItemData(ItemClassification.progression, 'dwemer_boots of flying'),
+    'Fireblade': ItemData(ItemClassification.useful, 'fireblade'),
     'Madstone of the Ahemmusa': ItemData(ItemClassification.useful, 'madstone'),
     'Ring of the Hortator': ItemData(ItemClassification.useful, 'hortatorring'),
     'Robe of the Hortator': ItemData(ItemClassification.useful, 'hortatorrobe'),
@@ -50,6 +52,11 @@ items = {
     'Wraithguard': ItemData(ItemClassification.progression, 'wraithguard'),
     # Potions
     '3 Quality Rising Force Potion': ItemData(ItemClassification.useful, 'P_Levitation_Q', 3),
+    # Scrolls
+    'Scroll of Almsivi Intervention': ItemData(ItemClassification.usefull, 'sc_almsiviintervention'),
+    'Scroll of Divine Intervention': ItemData(ItemClassification.useful, 'sc_divineintervention'),
+    '2 Scroll of Taldam\'s Scorcher': ItemData(ItemClassification.useful, 'sc_taldamsscorcher', 2),
+    '2 Scroll of Vitality': ItemData(ItemClassification.useful, 'sc_vitality', 2),
     # Keys
     'Archcanon\'s Private Key': ItemData(ItemClassification.filler, 'key_archcanon_private'),
     'Key to Lower Arkngthand': ItemData(ItemClassification.filler, 'misc_dwrv_ark_key00'),

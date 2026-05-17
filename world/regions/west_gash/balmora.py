@@ -25,9 +25,15 @@ locations = {
         rule=Has(AntabolisInformant.Completed),
         events=[GraMuzgobInformant.Started],
     ),
-    'Gra-Muzgob Informant reward': LocationData(
-        rule=HasAll(GraMuzgobInformant.Started, 'Nerevarine cult notes'),
+    'Gra-Muzgob Informant completed': LocationData(
+        rule=HasAll(GraMuzgobInformant.GetNotes, 'Nerevarine cult notes'),
         events=[GraMuzgobInformant.Completed],
+    ),
+    'Gra-Muzgob Informant promotion': DialogueLocationData(
+        rule=Has(GraMuzgobInformant.Completed),
+        items=['Scroll of Divine Intervention', 'Scroll of Almsivi Intervention'],
+        topic='Blades Apprentice',
+        response_id='1010328727326818700',
     ),
     'Vivec Informants start': DialogueLocationData(
         rule=Has(GraMuzgobInformant.Completed),
@@ -75,8 +81,16 @@ locations = {
         response_id='256041812384511341',
     ),
     # Sharn gra-Muzgob
-    'Gra-Muzgob notes': DialogueLocationData(
+    'Gra-Muzgob supplies': DialogueLocationData(
         rule=Has(GraMuzgobInformant.Started),
+        items=['Fireblade', '2 Scroll of Taldam\'s Scorcher', '2 Scroll of Vitality'],
+        topic='Andrano Ancestral Tomb',
+        response_id='1091431135261045346',
+        # TODO: patch condition to make this non-missable
+    ),
+    'Gra-Muzgob notes': DialogueLocationData(
+        rule=HasAll(GraMuzgobInformant.Started, 'Skull of Llevule Andrano'),
+        events=[GraMuzgobInformant.GetNotes],
         items=['Nerevarine cult notes'],
         topic='Nerevarine cult',
         response_id='2436419953283993854',
