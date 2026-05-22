@@ -53,7 +53,7 @@ items = {
     # Potions
     '3 Quality Rising Force Potion': ItemData(ItemClassification.useful, 'P_Levitation_Q', 3),
     # Scrolls
-    'Scroll of Almsivi Intervention': ItemData(ItemClassification.usefull, 'sc_almsiviintervention'),
+    'Scroll of Almsivi Intervention': ItemData(ItemClassification.useful, 'sc_almsiviintervention'),
     'Scroll of Divine Intervention': ItemData(ItemClassification.useful, 'sc_divineintervention'),
     '2 Scroll of Taldam\'s Scorcher': ItemData(ItemClassification.useful, 'sc_taldamsscorcher', 2),
     '2 Scroll of Vitality': ItemData(ItemClassification.useful, 'sc_vitality', 2),
