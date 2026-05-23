@@ -86,7 +86,6 @@ locations = {
         items=['Fireblade', '2 Scroll of Taldam\'s Scorcher', '2 Scroll of Vitality'],
         topic='Andrano Ancestral Tomb',
         response_id='1091431135261045346',
-        # TODO: patch condition to make this non-missable
     ),
     'Gra-Muzgob notes': DialogueLocationData(
         rule=HasAll(GraMuzgobInformant.Started, 'Skull of Llevule Andrano'),

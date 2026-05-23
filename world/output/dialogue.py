@@ -5,6 +5,7 @@ from dataclasses import dataclass, field
 from ..items import items
 from ..locations import DialogueLocationData
 from ..regions import location_name_to_data
+from .records import Records
 
 
 def get_dialogue_data(world) -> dict:
@@ -41,16 +42,13 @@ def get_dialogue_data(world) -> dict:
     return dialogue_data
 
 
-def get_dialogue_records(morrowind_data: list, dialogue_data: dict) -> list:
-    records = []
-
+def patch_dialogue_records(records: Records, dialogue_data: dict):
     for topic, responses_data in dialogue_data.items():
         for response_id, items_data in responses_data.items():
             for item_data in items_data:
-                records.append({
+                records.items[item_data['item_id']] = {
                     'type': 'MiscItem',
                     'flags': '',
-                    'id': item_data['item_id'],
                     'name': item_data['item_name'],
                     'script': '',
                     'mesh': 'm\\Gold_001.NIF',
@@ -60,18 +58,11 @@ def get_dialogue_records(morrowind_data: list, dialogue_data: dict) -> list:
                         'value': 0,
                         'flags': '',
                     },
-                })
+                }
 
     for topic, responses_data in dialogue_data.items():
-        records.append({
-            'type': 'Dialogue',
-            'flags': '',
-            'id': topic,
-            'dialogue_type': 'Topic',
-        })
-
         for response_id, items_data in responses_data.items():
-            original_record = next(record for record in morrowind_data if record['type'] == 'DialogueInfo' and record['id'] == response_id)
+            original_record = records.topics[topic][response_id]
 
             script_text = original_record['script_text']
             for item_data in items_data:
@@ -82,9 +73,9 @@ def get_dialogue_records(morrowind_data: list, dialogue_data: dict) -> list:
                     flags=re.IGNORECASE,
                 )
 
-            records.append({
+            records.topics[topic][response_id] = {
                 **original_record,
                 'script_text': script_text,
-            })
+            }
 
     return records

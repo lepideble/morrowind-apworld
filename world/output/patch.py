@@ -7,8 +7,10 @@ from settings import get_settings
 from worlds.Files import APAutoPatchInterface
 
 from ..common import GAME_NAME
-from .cells import get_cells_records
-from .dialogue import get_dialogue_records
+from .cells import patch_cells_records
+from .dialogue import patch_dialogue_records
+from .journal import patch_journal_records
+from .records import Records
 from .scripts import get_scripts
 
 
@@ -56,9 +58,13 @@ class MorrowindPatch(APAutoPatchInterface):
         morrowind_json = subprocess.run([tes3conv_path, morrowind_esm_path], capture_output=True)
         morrowind_data = json.load(io.BytesIO(morrowind_json.stdout))
 
-        records = []
-        records+= get_cells_records(morrowind_data, self.cells_data)
-        records+= get_dialogue_records(morrowind_data, self.dialogue_data)
+        records = Records(morrowind_data)
+
+        patch_dialogue_records(records, self.dialogue_data)
+        patch_cells_records(records, self.cells_data)
+        patch_journal_records(records)
+
+        records = records.get_records()
 
         omwaddon_data = json.dumps([
             {

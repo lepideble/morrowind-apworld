@@ -3,9 +3,7 @@ from collections import defaultdict
 from ..items import items
 from ..locations import PickableItemLocationData
 from ..regions import location_name_to_data
-
-
-item_types = ('MiscItem')
+from .records import Records
 
 
 def get_cells_data(world) -> dict:
@@ -36,17 +34,14 @@ def get_cells_data(world) -> dict:
     return cells_data
 
 
-def get_cells_records(morrowind_data: list, cells_data: dict) -> list:
-    records = []
-
+def patch_cells_records(records: Records, cells_data: dict) -> list:
     for cell, items in cells_data.items():
         for item_data in items:
-            original_record = next(record for record in morrowind_data if record['type'] in item_types and record['id'] == item_data['original_item_id'])
+            original_record = records.items[item_data['original_item_id']]
 
-            records.append({
+            records.items[item_data['item_id']] = {
                 'type': 'MiscItem',
                 'flags': '',
-                'id': item_data['item_id'],
                 'name': item_data['item_name'],
                 'script': original_record['script'],
                 'mesh': original_record['mesh'],
@@ -56,10 +51,10 @@ def get_cells_records(morrowind_data: list, cells_data: dict) -> list:
                     'value': 0,
                     'flags': '',
                 },
-            })
+            }
 
     for cell, items in cells_data.items():
-        original_record = next(record for record in morrowind_data if record['type'] == 'Cell' and record['name'] == cell)
+        original_record = records.cells[cell]
 
         record = {
             'type': 'Cell',
@@ -81,6 +76,6 @@ def get_cells_records(morrowind_data: list, cells_data: dict) -> list:
                 'rotation': original_reference['rotation'],
             })
 
-        records.append(record)
+        records.cells[cell] = record
 
     return records
