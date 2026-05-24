@@ -1,8 +1,8 @@
-from rule_builder.rules import HasAll
+from rule_builder.rules import Has, HasAll
 
-from ...locations import LocationData, DialogueLocationData
-from ...quests import AhemmusaNerevarine, HlaaluHortator, ErabenimsunNerevarine, HortatorAndNerevarine, RedoranHortator, TelvanniHortator, UrshilakuNerevarine, ZainabNerevarine
-
+from ....locations import LocationData, DialogueLocationData
+from ....quests import AhemmusaNerevarine, HlaaluHortator, ErabenimsunNerevarine, HortatorAndNerevarine, RedoranHortator, TelvanniHortator, UrshilakuNerevarine, ZainabNerevarine
+from . import vivec_palace_of_vivec
 
 name = 'Vivec, Temple'
 
@@ -21,12 +21,14 @@ locations = {
         topic='Temple\'s doctrine',
         response_id=['14850115581371211982', '8324178951345231004'],
     ),
-    # Vivec
-    'Meet Vivec': DialogueLocationData(
-        rule=HasAll(HortatorAndNerevarine.MeetArchcanonSaryoni, 'Secret Palace Entrance Key'),
-        events=[HortatorAndNerevarine.Completed],
-        items=['Wraithguard'],
-        topic='business',
-        response_id=['1389871372227023138', '22053304572540420424'],
-    ),
 }
+
+
+exits = [
+    ('Vivec, Palace of Vivec', Has('Secret Palace Entrance Key')),
+]
+
+
+regions = [
+    vivec_palace_of_vivec,
+]

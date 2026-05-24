@@ -32,18 +32,13 @@ class MorrowindWorld(World):
     options_dataclass = MorrowindOptions
     options: MorrowindOptions
 
-    origin_region_name = 'Vvardenfell'
+    origin_region_name = 'Seyda Neen'
 
     def create_regions(self) -> None:
-        vvardenfell = Region('Vvardenfell', self.player, self.multiworld)
-
-        self.multiworld.regions.append(vvardenfell)
-
         for region_data in regions:
             region = Region(region_data.name, self.player, self.multiworld)
 
-            vvardenfell.connect(region)
-            self.multiworld.regions.append(vvardenfell)
+            self.multiworld.regions.append(region)
 
             for location_name, location_data in getattr(region_data, 'locations', {}).items():
                 for name, event in enumerate_names(f'{location_name} event', location_data.events):
@@ -56,6 +51,11 @@ class MorrowindWorld(World):
                     self.set_rule(location, location_data.rule)
 
                     self.multiworld.itempool.append(self.create_item(item))
+
+        for region_data in regions:
+            region = self.get_region(region_data.name)
+            for (target_region_name, rule) in getattr(region_data, 'exits', []):
+                region.connect(self.get_region(target_region_name), rule=rule)
 
     def set_rules(self) -> None:
         self.set_completion_rule(Has(TheCitadelsOfTheSixthHouse.Completed))
