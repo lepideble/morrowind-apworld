@@ -18,9 +18,6 @@ locations = {
         events=[CorprusCure.Completed],
     ),
     # Yagrum Bagarn
-    # TODO: This check can be missed if you give the boots to Divayth Fyr before checking it, either
-    #   - Force to do this check before bringing the boots to Divayth Fyr
-    #   - Change the detection logic here (not sure what condition we can use)
     'Yagrum Bagarn boots': DialogueLocationData(
         rule=Has(CorprusCure.DivaythFyrFetchBoots),
         events=[CorprusCure.YagrumBagarnGaveBoots],

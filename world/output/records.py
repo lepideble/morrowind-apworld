@@ -58,7 +58,10 @@ class Dialogue(Mapping):
         if key in self.data:
             return self.data[key]
         else:
-            return next(record for record in self.records if record['id'] == key)
+            try:
+                return next(record for record in self.records if record['id'] == key)
+            except StopIteration:
+                raise KeyError(key) from None
 
     def __setitem__(self, key: str, value: dict):
         self.data[key] = value
@@ -110,15 +113,18 @@ class Dialogues(Mapping):
     def get_records(self) -> list:
         records = []
 
-        for topic_id, topic in self.data.items():
+        for dialogue_id, dialogue in self.data.items():
+            if len(dialogue.data) == 0:
+                continue
+
             records.append({
                 'type': 'Dialogue',
                 'flags': '',
-                'id': topic_id,
+                'id': dialogue_id,
                 'dialogue_type': self.dialogue_type,
             })
 
-            for key, value in topic.data.items():
+            for key, value in dialogue.data.items():
                 records.append({ **value, 'id': key })
 
         return records
@@ -132,19 +138,22 @@ class Journal(Dialogue):
 class Records:
     cells: Cells
     items: Items
-    topics: Dialogues
     journals: Dialogues
+    greetings: Dialogues
+    topics: Dialogues
 
     def __init__(self, records: list):
         self.cells = Cells(records)
         self.items = Items(records)
-        self.topics = Dialogues(records, 'Topic')
         self.journals = Dialogues(records, 'Journal')
+        self.greetings = Dialogues(records, 'Greeting')
+        self.topics = Dialogues(records, 'Topic')
 
     def get_records(self) -> list:
         return [
             *self.cells.get_records(),
             *self.items.get_records(),
-            *self.topics.get_records(),
             *self.journals.get_records(),
+            *self.greetings.get_records(),
+            *self.topics.get_records(),
         ]

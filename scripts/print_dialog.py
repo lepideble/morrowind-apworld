@@ -33,8 +33,10 @@ def render_comparison(filter: dict) -> str:
             sign = '<'
         case 'LessEqual':
             sign = '≤'
+        case 'NotEqual':
+            sign = '≠'
         case _:
-            raise Exception(f'Unknown comparison: {comparison}')
+            raise Exception(f'Unknown comparison: {filter['comparison']}')
 
     return f'{sign} {filter['value']['data']}'
 
@@ -102,6 +104,13 @@ def print_dialog(speaker: str|None, journal: str|None, set_journal: str|None, to
                     conditions.append(f'player sex {render_comparison(filter)}')
                 case ('Function', 'PcSpeechcraft'):
                     conditions.append(f'player sperchcraft {render_comparison(filter)}')
+                case ('Function', 'SameRace'):
+                    if filter['comparison'] == 'Equal' and filter['value']['data'] == 1:
+                        conditions.append(f'player same race to speaker')
+                    elif filter['comparison'] == 'Equal' and filter['value']['data'] == 0:
+                        conditions.append(f'player different race to speaker')
+                    else:
+                        raise Exception(f'Unexpected race condition')
                 case ('Function', 'TalkedToPc'):
                     conditions.append(f'player talked to speaker {render_comparison(filter)}')
                 case ('Global', 'VariableCompare'):
@@ -121,7 +130,7 @@ def print_dialog(speaker: str|None, journal: str|None, set_journal: str|None, to
                 case ('NotFaction', 'NotFaction'):
                     conditions.append(f'not faction {filter['id']} not {render_comparison(filter)}')
                 case _:
-                     raise Exception(f'Unknown filter type: {(filter['filter_type'], filter['function'])}')
+                    raise Exception(f'Unknown filter type: {(filter['filter_type'], filter['function'])}')
 
         print()
         print(f'id: {record['id']}')

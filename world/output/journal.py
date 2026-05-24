@@ -27,6 +27,22 @@ def patch_topic_response_filter(records: Records, topic: str, response_id: str, 
     }
 
 
+def patch_greeting_filter(records: Records, greeting_id: str, index: int, new_filter: dict):
+    greeting_name = None
+    for dialogue_id, dialogues in records.greetings.items():
+        if greeting_id in dialogues:
+            greeting_name = dialogue_id
+            break
+
+    records.greetings[greeting_name][greeting_id] = {
+        **records.greetings[greeting_name][greeting_id],
+        'filters': [
+            { **new_filter, 'index': index } if old_filter['index'] == index else old_filter
+            for old_filter in records.greetings[greeting_name][greeting_id]['filters']
+        ]
+    }
+
+
 def patch_journal_records(records: Records):
     copy_journal_entry(
         records,
@@ -56,5 +72,66 @@ def patch_journal_records(records: Records):
                 'type': 'Integer',
                 'data': 12,
             },
+        }
+    )
+
+    copy_journal_entry(
+        records,
+        old_journal_id='A2_3_CorprusCure',
+        new_journal_id='AP_A2_3_CorprusCure_40',
+        old_id='220921895306519514',
+        new_id='14084019193120576303784066230',
+    )
+    patch_topic_response_script(
+        records,
+        topic='Dwemer boots',
+        response_id='11310263561489620560',
+        old='Journal A2_3_CorprusCure 40',
+        new='Journal AP_A2_3_CorprusCure_40 40'
+    )
+    patch_topic_response_filter(
+        records,
+        topic='Dwemer boots',
+        response_id='1908410205275058192',
+        index=0,
+        new_filter={
+            'filter_type': 'Journal',
+            'function': 'JournalType',
+            'comparison': 'GreaterEqual',
+            'id': 'AP_A2_3_CorprusCure_40',
+            'value': {
+                'type': 'Integer',
+                'data': 40
+            }
+        }
+    )
+    patch_greeting_filter(
+        records,
+        greeting_id='365312161262776913',
+        index=0,
+        new_filter={
+            'filter_type': 'Journal',
+            'function': 'JournalType',
+            'comparison': 'GreaterEqual',
+            'id': 'AP_A2_3_CorprusCure_40',
+            'value': {
+                'type': 'Integer',
+                'data': 40
+            }
+        }
+    )
+    patch_greeting_filter(
+        records,
+        greeting_id='768621470167948895',
+        index=0,
+        new_filter={
+            'filter_type': 'Journal',
+            'function': 'JournalType',
+            'comparison': 'GreaterEqual',
+            'id': 'AP_A2_3_CorprusCure_40',
+            'value': {
+                'type': 'Integer',
+                'data': 40
+            }
         }
     )
