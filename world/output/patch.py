@@ -6,7 +6,7 @@ import subprocess
 from settings import get_settings
 from worlds.Files import APAutoPatchInterface
 
-from ..common import GAME_NAME
+from ..common import GAME_NAME, PATCH_FILE_ENDING
 from .cells import patch_cells_records
 from .dialogue import patch_dialogue_records
 from .journal import patch_journal_records
@@ -16,7 +16,7 @@ from .scripts import get_scripts
 
 class MorrowindPatch(APAutoPatchInterface):
     game = GAME_NAME
-    patch_file_ending = '.apmw'
+    patch_file_ending = PATCH_FILE_ENDING
     result_file_ending = ''
 
     cells_data: dict[list]
