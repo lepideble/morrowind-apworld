@@ -23,6 +23,8 @@ items = {
     '200 Gold': ItemData(ItemClassification.filler, 'Gold_001', 200),
     '400 Gold': ItemData(ItemClassification.filler, 'Gold_001', 400),
     '1000 Gold': ItemData(ItemClassification.filler, 'Gold_001', 1000),
+    'House Dagoth cup': ItemData(ItemClassification.progression, 'misc_goblet_dagoth'),
+    'Shadow Shield': ItemData(ItemClassification.progression, 'shadow_shield'),
     'Skull of Llevule Andrano': ItemData(ItemClassification.progression, 'misc_Skull_Llevule'),
     # Books
     'Decoded package': ItemData(ItemClassification.filler, 'bk_a1_1_packagedecoded'),
@@ -44,6 +46,7 @@ items = {
     'Dwemer Boots of Flying': ItemData(ItemClassification.progression, 'dwemer_boots of flying'),
     'Fireblade': ItemData(ItemClassification.useful, 'fireblade'),
     'Madstone of the Ahemmusa': ItemData(ItemClassification.useful, 'madstone'),
+    'Malipu-Ataman\'s Belt': ItemData(ItemClassification.useful, 'malipu_ataman\'s_belt'),
     'Ring of the Hortator': ItemData(ItemClassification.useful, 'hortatorring'),
     'Robe of the Hortator': ItemData(ItemClassification.useful, 'hortatorrobe'),
     'Teeth of the Urshilaku': ItemData(ItemClassification.useful, 'teeth'),

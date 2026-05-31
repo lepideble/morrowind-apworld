@@ -31,6 +31,13 @@ locations = {
         events=[HortatorAndNerevarine.NamedNerevarine],
     ),
     # Sul-Matul
+    'The Path of the Incarnate - Warrior\'s Test reward': DialogueLocationData(
+        rule=HasAll(ThePathOfTheIncarnate.Started, 'House Dagoth cup', 'Shadow Shield'),
+        events=[ThePathOfTheIncarnate.WarriorsTestCompleted],
+        items=['Malipu-Ataman\'s Belt'],
+        topic='Third trial',
+        response_id='3079029978897331836',
+    ),
     'Named Urshilaku Nerevarine': DialogueLocationData(
         rule=Has(ThePathOfTheIncarnate.Completed),
         events=[UrshilakuNerevarine.Completed],

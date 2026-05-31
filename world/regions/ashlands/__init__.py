@@ -1,7 +1,7 @@
 from rule_builder.rules import Has, True_
 
 from ...quests import ThePathOfTheIncarnate
-from . import ald_ruhn, cavern_of_the_incarnate, urshilaku_camp
+from . import ald_ruhn, cavern_of_the_incarnate, kogoruhn, urshilaku_camp
 
 
 name = 'Ashlands region'
@@ -10,7 +10,8 @@ name = 'Ashlands region'
 exits = [
     # Sub-regions
     ('Ald\'ruhn', True_()),
-    ('Cavern of the Incarnate', Has(ThePathOfTheIncarnate.Started)),
+    ('Cavern of the Incarnate', Has(ThePathOfTheIncarnate.WarriorsTestCompleted)),
+    ('Kogoruhn', True_()),
     ('Urshilaku Camp', True_()),
     # Neighbouring regions
     ('Grazelands region', True_()),
@@ -24,5 +25,6 @@ exits = [
 regions = [
     ald_ruhn,
     cavern_of_the_incarnate,
+    kogoruhn,
     urshilaku_camp,
 ]

@@ -51,6 +51,7 @@ class MehraMiloAndTheLostProphecies(Quest): # A2_4_MiloGone
 
 class ThePathOfTheIncarnate(Quest): # A2_6_Incarnate
     Started = 'The Path of the Incarnate started' # 1
+    WarriorsTestCompleted = 'The Path of the Incarnate - Warrior\'s Test completed' # 15
     Completed = 'The Path of the Incarnate completed' # 50
 
 
