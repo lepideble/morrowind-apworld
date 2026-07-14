@@ -45,6 +45,7 @@ items = {
     'Belt of the Hortator': ItemData(ItemClassification.useful, 'hortatorbelt'),
     'Dwemer Boots of Flying': ItemData(ItemClassification.progression, 'dwemer_boots of flying'),
     'Fireblade': ItemData(ItemClassification.useful, 'fireblade'),
+    'Keening': ItemData(ItemClassification.useful, 'keening'),
     'Madstone of the Ahemmusa': ItemData(ItemClassification.useful, 'madstone'),
     'Malipu-Ataman\'s Belt': ItemData(ItemClassification.useful, 'malipu_ataman\'s_belt'),
     'Ring of the Hortator': ItemData(ItemClassification.useful, 'hortatorring'),

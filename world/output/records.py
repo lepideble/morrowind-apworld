@@ -1,7 +1,7 @@
 from collections.abc import Mapping
 
 
-item_types = ('Armor', 'MiscItem')
+item_types = ('Armor', 'MiscItem', 'Weapon')
 
 
 class Cells:
