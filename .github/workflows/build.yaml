@@ -1,0 +1,22 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request: ~
+
+jobs:
+  build:
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          path: morrowind-apworld
+      - run: rsync --recursive --ignore-times --exclude-from morrowind-apworld/.apignore ./morrowind-apworld/ ./morrowind/
+      - run: zip --recurse-paths morrowind.apworld morrowind
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          path: morrowind.apworld
+          archive: false
+          if-no-files-found: error
