@@ -1,0 +1,59 @@
+name: Release
+
+permissions:
+  contents: write
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  release:
+    runs-on: ubuntu-26.04
+    steps:
+      - name: Download artifacts
+        uses: actions/github-script@v9.0.0
+        with:
+          script: |
+            const { writeFile } = require('fs/promises');
+
+            const { data: { workflow_runs: [workflowRun] } } = await github.rest.actions.listWorkflowRunsForRepo({
+              ...context.repo,
+              status: 'success',
+              head_sha: context.sha,
+            });
+
+            const { data: { artifacts } } = await github.rest.actions.listWorkflowRunArtifacts({
+              ...context.repo,
+              run_id: workflowRun.id,
+            });
+
+            const { data: apworld_data } = await octokit.rest.actions.downloadArtifact({
+              ...context.repo,
+              artifact_id: artifacts.find((artifact) => artifact.name === 'morrowind.apworld').id,
+              archive_format: 'zip',
+            });
+
+            await writeFile(`morrowind.apworld`, Buffer.from(apworld_data));
+
+            const { data: template_data } = await octokit.rest.actions.downloadArtifact({
+              ...context.repo,
+              artifact_id: artifacts.find((artifact) => artifact.name === 'The Elder Scrolls III Morrowind.yaml').id,
+              archive_format: 'zip',
+            });
+
+            await writeFile(`The Elder Scrolls III Morrowind.yaml`, Buffer.from(template_data));
+      - name: Set world_version
+        run: |
+          unzip morrowind.apworld morrowind/archipelago.json
+
+          sed --in-place 's/"world_version": "0.0.0"/"world_version": "${{ github.ref_name }}"/g' morrowind/archipelago.json
+
+          zip morrowind.apworld morrowind/archipelago.json
+      - name: Add files to release
+        uses: softprops/action-gh-release@v3.0.3
+        with:
+          files: |
+            morrowind.apworld
+            The Elder Scrolls III Morrowind.yaml
