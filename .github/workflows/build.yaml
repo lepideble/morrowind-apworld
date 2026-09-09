@@ -20,3 +20,25 @@ jobs:
           path: morrowind.apworld
           archive: false
           if-no-files-found: error
+      - id: archipelago
+        run: |
+          curl \
+            --fail \
+            --location \
+            --output /usr/local/bin/archipelago \
+            https://github.com/ArchipelagoMW/Archipelago/releases/download/0.6.7/Archipelago_0.6.7_linux-x86_64.AppImage
+
+          echo "6b951acf3a86bbbab8660d406079db42309340d75c35a2ff819523615dd19394 /usr/local/bin/archipelago" | sha256sum --check -
+
+          chmod +x /usr/local/bin/archipelago
+
+          mkdir --parents ~/.local/share/Archipelago/worlds/
+
+          echo "user_path=$HOME/.local/share/Archipelago" >> "$GITHUB_OUTPUT"
+      - run: cp morrowind.apworld ${{ steps.archipelago.outputs.user_path }}/worlds/
+      - run: archipelago 'Generate Template Options' -- --skip_open_folder
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          path: ${{ steps.archipelago.outputs.user_path }}/Players/Templates/The Elder Scrolls III Morrowind.yaml
+          archive: false
+          if-no-files-found: error
