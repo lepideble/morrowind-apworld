@@ -5,8 +5,13 @@ local core = require('openmw.core')
 local async = require('openmw.async')
 
 ---@type APClient
-local APClient = require('archipelago').APClient
-  
+local APClient
+if requireAp then
+    APClient = requireAp()
+else
+    APClient = require('archipelago').APClient
+end
+
 local gameName = 'The Elder Scrolls III: Morrowind'
 local itemsHandling = 7 -- binary b111 - we want everything
 local messageFormat = APClient.RenderFormat.TEXT
@@ -16,13 +21,6 @@ local time = 0
 
 ---@type APClient | nil
 local connection = nil
---Simply add quests in the format of {1, "questid", 2, "questid"}
-local quests = {}
---Add the quest stages in the form of {1, "quest stage", 2, "queststage"). 
---Please note that they will have to be in the same id location, say we have a quest where the finishing id is one and it's the first one.
---It should be quests = {1, "quest"} quest_stage = {1, "1"}
---When these locations are sent the id's will be added to 3000 for simplicity
-local quest_stage = {}
 
 --This helps save the received list across instances
 Received = Received or {}
@@ -94,12 +92,6 @@ local function connect(server, slot, password)
         print(slot_data)
         print("missing locations: " .. table.concat(connection.missing_locations, ", "))
         print("checked locations: " .. table.concat(connection.checked_locations, ", "))
-        connection:Say("Hello World!")
-        connection:Bounce({ name = "test" }, { gameName })
-        local extra = { nonce = 123 } -- optional extra data will be in the server reply
-        connection:Get({ "counter" }, extra)
-        connection:Set("counter", 0, true, { { "add", 1 } }, extra)
-        connection:Set("empty_array", nil, true, { { "replace", APClient.EMPTY_ARRAY } })
         connection:ConnectUpdate(nil, { "Lua-APClientPP", "DeathLink" })
         connection:LocationChecks({})
         print("Players:")
@@ -246,8 +238,7 @@ local function isConnected()
 end
 
 SendLocation = function(location)
-  --This is an event received from Global.lua except for quests
-  --Quests will have 3000 added to their archipelago id for simplicity in dealing with ids
+  --This is an event received from Global.lua
   connection:LocationChecks({location})
 end
 
