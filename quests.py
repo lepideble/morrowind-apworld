@@ -91,5 +91,5 @@ class HortatorAndNerevarine(Quest): # B8_MeetVivec
 
 
 class TheCitadelsOfTheSixthHouse(Quest): # C3_DestroyDagoth
-    DestroyHearthEnchantment = 'Destroy Heart of Lorkhan enchantment' # 20
+    DestroyHeartEnchantment = 'Destroy Heart of Lorkhan enchantment' # 20
     Completed = 'The Citadels of the Sixth House completed' # 50
