@@ -2,9 +2,9 @@ import re
 from collections import defaultdict
 from dataclasses import dataclass, field
 
-from ..items import items
-from ..locations import DialogueLocationData
-from ..regions import location_name_to_data
+from ..data.classes import DialogueLocationData
+from ..data.items import items
+from ..data.regions import location_name_to_data
 from .records import Records
 
 

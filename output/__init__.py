@@ -1,6 +1,6 @@
 from os import path
 
-from ..items import items
+from ..data.items import items
 from .cells import get_cells_data
 from .dialogue import get_dialogue_data
 from .patch import MorrowindPatch

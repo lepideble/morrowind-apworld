@@ -1,0 +1,18 @@
+from rule_builder.rules import Has, HasAll
+
+from ...classes import DialogueLocationData
+from ...quests import AntabolisInformant, GraMuzgobInformant, VivecInformants, ZainsubaniInformant
+
+
+name = 'Vivec, Foreign Quarter'
+
+
+locations = {
+    # Huleeya
+    'Huleeya notes': DialogueLocationData(
+        rule=Has(VivecInformants.Started),
+        items=['Notes from Huleeya'],
+        topic='Nerevarine cult',
+        response_id='678171652181916488',
+    ),
+}

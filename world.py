@@ -3,11 +3,11 @@ from rule_builder.rules import Has
 from worlds.AutoWorld import World
 
 from .common import GAME_NAME
-from .items import items
+from .data.items import items
+from .data.quests import TheCitadelsOfTheSixthHouse
+from .data.regions import regions, location_name_to_id
 from .options import MorrowindOptions
 from .output import generate_output
-from .quests import TheCitadelsOfTheSixthHouse
-from .regions import regions, location_name_to_id
 from .settings import MorrowindSettings
 from .util import enumerate_names
 

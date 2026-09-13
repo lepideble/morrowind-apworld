@@ -1,8 +1,8 @@
 from collections import defaultdict
 
-from ..items import items
-from ..locations import PickableItemLocationData
-from ..regions import location_name_to_data
+from ..data.classes import PickableItemLocationData
+from ..data.items import items
+from ..data.regions import location_name_to_data
 from .records import Records
 
 
