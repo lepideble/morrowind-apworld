@@ -1,4 +1,4 @@
-from .records import Journal, Records
+from ..lib.records import Journal, Records
 
 
 def copy_journal_entry(records: Records, old_journal_id: str, new_journal_id, old_id: int, new_id: int):

@@ -6,10 +6,9 @@ from .common import GAME_NAME
 from .data.items import items
 from .data.quests import TheCitadelsOfTheSixthHouse
 from .data.regions import regions, location_name_to_id
+from .data.util import enumerate_names
+from .mod import generate_output
 from .options import MorrowindOptions
-from .output import generate_output
-from .settings import MorrowindSettings
-from .util import enumerate_names
 
 
 class MorrowindItem(Item):
@@ -25,9 +24,6 @@ class MorrowindWorld(World):
 
     item_name_to_id = {name: item.id for name, item in items.items()}
     location_name_to_id = location_name_to_id
-
-    settings: MorrowindSettings
-    settings_key = 'morrowind_options'
 
     options_dataclass = MorrowindOptions
     options: MorrowindOptions
