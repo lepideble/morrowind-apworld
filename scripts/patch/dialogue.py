@@ -1,31 +1,20 @@
 import re
-from collections import defaultdict
-from dataclasses import dataclass, field
+import collections
 
 from ..data.classes import DialogueLocationData
 from ..data.items import items
-from ..data.regions import location_name_to_data
-from .records import Records
+from ..data.regions import location_name_to_data, location_name_to_id
+from ..lib.records import Records
 
 
-def get_dialogue_data(world) -> dict:
-    dialogue_data = defaultdict(lambda: defaultdict(list))
+def get_dialogue_data() -> dict:
+    dialogue_data = collections.defaultdict(lambda: collections.defaultdict(list))
 
-    for location in world.get_locations():
-        if location.address is None:
-            continue
-
-        region_data, location_data, original_item = location_name_to_data[location.name]
-
+    for (location_name, (region_data, location_data, original_item)) in location_name_to_data.items():
         if not isinstance(location_data, DialogueLocationData):
             continue
 
-        item = location.item
-
-        if location.player == item.player:
-            item_name = item.name
-        else:
-            item_name = f"{world.multiworld.get_player_name(item.player)}'s {item.name}"
+        location_id = location_name_to_id[location_name]
 
         if isinstance(location_data.response_id, list):
             response_ids = location_data.response_id
@@ -34,22 +23,21 @@ def get_dialogue_data(world) -> dict:
 
         for response_id in response_ids:
             dialogue_data[location_data.topic][response_id].append({
-                'item_id': f'ap_{location.address}',
-                'item_name': item_name,
+                'item_id': f'ap_{location_id}',
                 'original_item_id': items[original_item].recordId,
             })
 
     return dialogue_data
 
 
-def patch_dialogue_records(records: Records, dialogue_data: dict):
-    for topic, responses_data in dialogue_data.items():
+def patch_dialogue_records(records: Records):
+    for topic, responses_data in get_dialogue_data().items():
         for response_id, items_data in responses_data.items():
             for item_data in items_data:
                 records.items[item_data['item_id']] = {
                     'type': 'MiscItem',
                     'flags': '',
-                    'name': item_data['item_name'],
+                    'name': 'Archipelago Item',
                     'script': '',
                     'mesh': 'm\\Gold_001.NIF',
                     'icon': 'm\\Tx_Gold_001.tga',
@@ -60,8 +48,6 @@ def patch_dialogue_records(records: Records, dialogue_data: dict):
                     },
                 }
 
-    for topic, responses_data in dialogue_data.items():
-        for response_id, items_data in responses_data.items():
             original_record = records.topics[topic][response_id]
 
             script_text = original_record['script_text']
@@ -77,5 +63,3 @@ def patch_dialogue_records(records: Records, dialogue_data: dict):
                 **original_record,
                 'script_text': script_text,
             }
-
-    return records

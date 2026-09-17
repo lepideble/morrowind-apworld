@@ -1,2 +1,2 @@
-# Import client and world to make them register themselves into archipelago
-from . import client, tracker, world
+# Import world and tracker to make them register themselves
+from . import tracker, world

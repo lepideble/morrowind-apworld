@@ -136,13 +136,15 @@ class Journal(Dialogue):
 
 
 class Records:
+    masters: list
     cells: Cells
     items: Items
     journals: Dialogues
     greetings: Dialogues
     topics: Dialogues
 
-    def __init__(self, records: list):
+    def __init__(self, masters: list, records: list):
+        self.masters = masters
         self.cells = Cells(records)
         self.items = Items(records)
         self.journals = Dialogues(records, 'Journal')

@@ -1,48 +1,37 @@
-from collections import defaultdict
+import collections
 
 from ..data.classes import PickableItemLocationData
 from ..data.items import items
-from ..data.regions import location_name_to_data
-from .records import Records
+from ..data.regions import location_name_to_data, location_name_to_id
+from ..lib.records import Records
 
 
-def get_cells_data(world) -> dict:
-    cells_data = defaultdict(list)
+def get_cells_data() -> dict:
+    cells_data = collections.defaultdict(list)
 
-    for location in world.get_locations():
-        if location.address is None:
-            continue
-
-        region_data, location_data, original_item = location_name_to_data[location.name]
-
+    for (location_name, (region_data, location_data, original_item)) in location_name_to_data.items():
         if not isinstance(location_data, PickableItemLocationData):
             continue
 
-        item = location.item
-
-        if location.player == item.player:
-            item_name = item.name
-        else:
-            item_name = f"{world.multiworld.get_player_name(item.player)}'s {item.name}"
+        location_id = location_name_to_id[location_name]
 
         cells_data[location_data.cell].append({
-            'item_id': f'ap_{location.address}',
-            'item_name': item_name,
+            'item_id': f'ap_{location_id}',
             'original_item_id': items[original_item].recordId,
         })
 
     return cells_data
 
 
-def patch_cells_records(records: Records, cells_data: dict) -> list:
-    for cell, items in cells_data.items():
+def patch_cells_records(records: Records):
+    for cell, items in get_cells_data().items():
         for item_data in items:
             original_record = records.items[item_data['original_item_id']]
 
             records.items[item_data['item_id']] = {
                 'type': 'MiscItem',
                 'flags': '',
-                'name': item_data['item_name'],
+                'name': 'Archipelago Item',
                 'script': original_record['script'],
                 'mesh': original_record['mesh'],
                 'icon': 'm\\Tx_Gold_001.tga',
@@ -53,7 +42,6 @@ def patch_cells_records(records: Records, cells_data: dict) -> list:
                 },
             }
 
-    for cell, items in cells_data.items():
         original_record = records.cells[cell]
 
         record = {
@@ -77,5 +65,3 @@ def patch_cells_records(records: Records, cells_data: dict) -> list:
             })
 
         records.cells[cell] = record
-
-    return records

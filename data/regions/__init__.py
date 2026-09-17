@@ -1,6 +1,6 @@
 from itertools import count
 
-from ...util import enumerate_names
+from ..util import enumerate_names
 from . import ascadian_isles, ashlands, azuras_coast, bitter_coast, grazelands, molag_amur, red_mountain, sheogorad, west_gash
 
 
