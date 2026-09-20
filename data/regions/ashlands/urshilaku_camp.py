@@ -9,8 +9,8 @@ name = 'Urshilaku Camp'
 
 locations = {
     # Nibani Maesa
-    'Meet Sul-Matuul reward': DialogueLocationData(
-        rule=Has(MeetSulMatuul.Started),
+    'Meet Sul-Matuul: Reward': DialogueLocationData(
+        rule=Has(MeetSulMatuul.InitiationRiteCompleted),
         events=[MeetSulMatuul.Completed],
         items=['The Seven Visions', 'The Stranger'],
         topic='pass the test',
@@ -30,7 +30,11 @@ locations = {
         rule=HasAll(AhemmusaNerevarine.Completed, ErabenimsunNerevarine.Completed, UrshilakuNerevarine.Completed, ZainabNerevarine.Completed),
         events=[HortatorAndNerevarine.NamedNerevarine],
     ),
-    # Sul-Matul
+    # Sul-Matul
+    'Meet Sul-Matuul: Initiation rite completed': LocationData(
+        rule=HasAll(MeetSulMatuul.Started, 'Bonebiter Bow of Sul-Senipul'),
+        events=[MeetSulMatuul.InitiationRiteCompleted],
+    ),
     'The Path of the Incarnate - Warrior\'s Test reward': DialogueLocationData(
         rule=HasAll(ThePathOfTheIncarnate.Started, 'House Dagoth cup', 'Shadow Shield'),
         events=[ThePathOfTheIncarnate.WarriorsTestCompleted],

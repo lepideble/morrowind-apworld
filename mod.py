@@ -66,7 +66,7 @@ def generate_output(world, output_directory: str) -> None:
     )
 
     mod.items_data = {
-        item_data.id: (item_data.recordId, item_data.count)
+        item_data.id: (item_data.record_id, item_data.count)
         for item_data in items.values()
     }
     mod.locations_data = {

@@ -22,7 +22,7 @@ def load(*paths: str) -> Records:
 
 
 def save(records: Records, path: str):
-    records_data = records.get_records()
+    records_data = records.get_updated_records()
 
     subprocess.run(['tes3conv', '--overwrite', '-', path], input=json.dumps([
         {

@@ -14,7 +14,7 @@ items = {
     'House Dagoth cup': ItemData(ItemClassification.progression, 'misc_goblet_dagoth'),
     'Shadow Shield': ItemData(ItemClassification.progression, 'shadow_shield'),
     'Skull of Llevule Andrano': ItemData(ItemClassification.progression, 'misc_Skull_Llevule'),
-    # Books
+    # Books
     'Decoded package': ItemData(ItemClassification.filler, 'bk_a1_1_packagedecoded'),
     'Hasphat\'s notes for Cosades': ItemData(ItemClassification.progression, 'bk_a1_2_antabolistocosades'),
     'Kagrenac\'s Tools': ItemData(ItemClassification.filler, 'bk_kagrenac\'stools'),
@@ -29,8 +29,12 @@ items = {
     'The Stranger': ItemData(ItemClassification.filler, 'bk_a2_1_thestranger'),
     'Zainsubani\'s Notes': ItemData(ItemClassification.filler, 'bk_a1_11_zainsubaninotes'),
     # Equipment
+    '6th House Amulet': ItemData(ItemClassification.filler, 'amulet of 6th house'),
+    'Amulet of Heartheal': ItemData(ItemClassification.useful, 'artifact_amulet of heartheal'),
+    'Ash Salts': ItemData(ItemClassification.filler, 'ingred_ash_salts_01'),
     'Ashkhan\'s Wedding Gift': ItemData(ItemClassification.filler, 'exquisite_shirt_01_wedding'),
     'Belt of the Hortator': ItemData(ItemClassification.useful, 'hortatorbelt'),
+    'Bonebiter Bow of Sul-Senipul': ItemData(ItemClassification.progression, 'bonebiter_bow_unique'),
     'Dwemer Boots of Flying': ItemData(ItemClassification.progression, 'dwemer_boots of flying'),
     'Fireblade': ItemData(ItemClassification.useful, 'fireblade'),
     'Keening': ItemData(ItemClassification.progression, 'keening'),
@@ -38,6 +42,7 @@ items = {
     'Malipu-Ataman\'s Belt': ItemData(ItemClassification.useful, 'malipu_ataman\'s_belt'),
     'Ring of the Hortator': ItemData(ItemClassification.useful, 'hortatorring'),
     'Robe of the Hortator': ItemData(ItemClassification.useful, 'hortatorrobe'),
+    'Sunder': ItemData(ItemClassification.progression, 'sunder'),
     'Teeth of the Urshilaku': ItemData(ItemClassification.useful, 'teeth'),
     'The Seizing of the Erabenimsun': ItemData(ItemClassification.useful, 'seizing'),
     'Thong of Zainab': ItemData(ItemClassification.useful, 'thong'),

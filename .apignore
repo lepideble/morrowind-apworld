@@ -2,4 +2,5 @@
 /.github/
 /.apignore
 /.editorconfig
+/.gitignore
 /scripts/

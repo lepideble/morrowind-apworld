@@ -1,3 +1,4 @@
+import collections.abc
 from collections.abc import Mapping
 
 
@@ -21,8 +22,61 @@ class Cells:
     def __setitem__(self, key: str, value: dict):
         self.data[key] = value
 
-    def get_records(self) -> list:
+    def get_updated_records(self) -> list:
         return [{**value, 'id': key} for key, value in self.data.items()]
+
+
+class Creature:
+    record: dict
+    updated: bool
+
+    def __init__(self, record):
+        self.record = record
+        self.updated = False
+
+    class Inventory(collections.abc.MutableSequence):
+        def __init__(self, parent):
+            self.parent = parent
+
+        def __getitem__(self, index):
+            return self.parent.record['inventory'].__getitem__(index)
+
+        def __setitem__(self, index, value):
+            self.parent.record['inventory'].__setitem__(index, value)
+            self.parent.updated = True
+
+        def __delitem__(self, index):
+            self.parent.record['inventory'].__delitem__(index)
+            self.parent.updated = True
+
+        def __len__(self):
+            return self.parent.record['inventory'].__len__(self)
+
+        def insert(self, index, value):
+            self.parent.record['inventory'].insert(self, index, value)
+            self.parent.updated = True
+
+    @property
+    def inventory(self) -> collections.abc.MutableSequence:
+        return Creature.Inventory(self)
+
+
+class Creatures(dict):
+    records: list
+
+    def __init__(self, records: list):
+        super().__init__()
+        self.records = records
+
+    def __getitem__(self, key) -> Creature:
+        if key not in self:
+            if record := next((record for record in self.records if record['type'] == 'Creature' and record['id'] == key), None):
+                self[key] = Creature(record)
+
+        return super().__getitem__(key)
+
+    def get_updated_records(self) -> list:
+        return [{**value.record, 'id': key} for key, value in self.items() if value.updated]
 
 
 class Items:
@@ -42,7 +96,7 @@ class Items:
     def __setitem__(self, key: str, value: dict):
         self.data[key] = value
 
-    def get_records(self) -> list:
+    def get_updated_records(self) -> list:
         return [{**value, 'id': key} for key, value in self.data.items()]
 
 
@@ -110,7 +164,7 @@ class Dialogues(Mapping):
     def __len__(self):
         return sum(1 for _ in self.__iter__())
 
-    def get_records(self) -> list:
+    def get_updated_records(self) -> list:
         records = []
 
         for dialogue_id, dialogue in self.data.items():
@@ -138,6 +192,7 @@ class Journal(Dialogue):
 class Records:
     masters: list
     cells: Cells
+    creatures: Creatures
     items: Items
     journals: Dialogues
     greetings: Dialogues
@@ -146,16 +201,18 @@ class Records:
     def __init__(self, masters: list, records: list):
         self.masters = masters
         self.cells = Cells(records)
+        self.creatures = Creatures(records)
         self.items = Items(records)
         self.journals = Dialogues(records, 'Journal')
         self.greetings = Dialogues(records, 'Greeting')
         self.topics = Dialogues(records, 'Topic')
 
-    def get_records(self) -> list:
+    def get_updated_records(self) -> list:
         return [
-            *self.cells.get_records(),
-            *self.items.get_records(),
-            *self.journals.get_records(),
-            *self.greetings.get_records(),
-            *self.topics.get_records(),
+            *self.cells.get_updated_records(),
+            *self.creatures.get_updated_records(),
+            *self.items.get_updated_records(),
+            *self.journals.get_updated_records(),
+            *self.greetings.get_updated_records(),
+            *self.topics.get_updated_records(),
         ]

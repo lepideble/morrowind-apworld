@@ -9,7 +9,7 @@ name = 'Dagoth Ur'
 
 locations = {
     'Destroy Heart of Lorkhan enchantment': LocationData(
-        rule=HasAll('Keening', 'Wraithguard'),
+        rule=HasAll('Keening', 'Sunder', 'Wraithguard'),
         events=[TheCitadelsOfTheSixthHouse.DestroyHeartEnchantment],
     ),
     'The Citadels of the Sixth House Reward': LocationData(

@@ -10,7 +10,7 @@ def generate():
 
     patch_records(records)
 
-    save(records, os.path.join(os.path.dirname(os.path.dirname(__file__)), 'output', 'files', 'archipelago.omwaddon'))
+    save(records, os.path.join(os.path.dirname(os.path.dirname(__file__)), 'files', 'archipelago.omwaddon'))
 
 if __name__ == '__main__':
     generate()

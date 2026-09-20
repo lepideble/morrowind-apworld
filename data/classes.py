@@ -13,7 +13,7 @@ item_ids = count(start=1)
 class ItemData:
     id: int = field(default_factory=lambda: next(item_ids), init=False)
     classification: ItemClassification
-    recordId: str
+    record_id: str
     count: int = 1
 
 
@@ -33,6 +33,11 @@ class DialogueLocationData(LocationData):
 @dataclass
 class PickableItemLocationData(LocationData):
     cell: str = field(kw_only=True)
+
+
+@dataclass
+class CreatureInventory(LocationData):
+    creature_id: str = field(kw_only=True)
 
 
 class Quest(StrEnum):

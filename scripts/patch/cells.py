@@ -17,7 +17,7 @@ def get_cells_data() -> dict:
 
         cells_data[location_data.cell].append({
             'item_id': f'ap_{location_id}',
-            'original_item_id': items[original_item].recordId,
+            'original_item_id': items[original_item].record_id,
         })
 
     return cells_data

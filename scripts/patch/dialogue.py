@@ -24,7 +24,7 @@ def get_dialogue_data() -> dict:
         for response_id in response_ids:
             dialogue_data[location_data.topic][response_id].append({
                 'item_id': f'ap_{location_id}',
-                'original_item_id': items[original_item].recordId,
+                'original_item_id': items[original_item].record_id,
             })
 
     return dialogue_data

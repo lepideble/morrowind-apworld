@@ -10,7 +10,7 @@ class AntabolisInformant(Quest): # A1_2_AntabolisInformant
 class GraMuzgobInformant(Quest): # A1_4_MuzgobInformant
     Started = 'Gra-Muzgob Informant started'
     GetNotes = 'Gra-Muzgob Informant get notes' # 15 & 20
-    Completed = 'Gra-Muzgob Informant completed' # 25 | 30
+    Completed = 'Gra-Muzgob Informant completed' # 25 | 30
 
 
 class VivecInformants(Quest):
@@ -23,8 +23,9 @@ class ZainsubaniInformant(Quest):
     Completed = 'Zainsubani Informant completed'
 
 
-class MeetSulMatuul(Quest):
+class MeetSulMatuul(Quest): # A2_1_MeetSulMatuul
     Started = 'Meet Sul-Matuul started'
+    InitiationRiteCompleted = 'Meet Sul-Matuul: Initiation rite completed' # 45
     Completed = 'Meet Sul-Matuul completed'
 
 
@@ -52,7 +53,7 @@ class ThePathOfTheIncarnate(Quest): # A2_6_Incarnate
 
 
 class HlaaluHortator(Quest): # B6_HlaaluHort
-    Completed = 'Hlaalu Hortator: completed' # 50
+    Completed = 'Hlaalu Hortator: completed' # 50
 
 
 class RedoranHortator(Quest): # B5_RedoranHort
