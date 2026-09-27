@@ -20,26 +20,23 @@ files_ressource = importlib.resources.files(__name__).joinpath('files')
 files_list = list(_recursive_list_files(files_ressource))
 
 
-def _generate_lua_items_data(items_data: dict[int, tuple[str, int]]) -> collections.abc.Iterator[str]:
-    yield 'return {\n'
-    for item_id, (item_record_id, item_count) in items_data.items():
-        yield '    [' + str(item_id) + '] = {"' + item_record_id + '", ' + str(item_count) + '},\n'
-    yield '}\n'
+def _to_lua(value) -> str:
+    if isinstance(value, int):
+        return str(value)
+    if isinstance(value, str):
+        return '"' + value + '"'
+    if isinstance(value, tuple):
+        return '{' + ', '.join(map(_to_lua, value)) + '}'
+    raise Error(f'Unexpected type: {type(value)}')
 
 
-def _generate_lua_locations_data(locations_data: dict[int, tuple[str, int]]) -> collections.abc.Iterator[str]:
-    yield 'local content = require("openmw.content")'
-    yield ''
-    yield 'function onContentFilesLoaded()'
-    for location_id, location_item in locations_data.items():
-        yield f'    content.miscs.records.ap_{location_id}.name = "{location_item}"'
-    yield 'end'
-    yield ''
-    yield 'return {'
-    yield '    engineHandlers = {'
-    yield '        onContentFilesLoaded = onContentFilesLoaded'
-    yield '    }'
-    yield '}'
+def _to_lua_file(data: dict) -> str:
+    file = ''
+    file += 'return {\n'
+    for key, value in data.items():
+        file += f'    [{_to_lua(key)}] = {_to_lua(value)},\n'
+    file += '}\n'
+    return file
 
 
 class MorrowindMod(APPlayerContainer):
@@ -51,8 +48,8 @@ class MorrowindMod(APPlayerContainer):
         for file in files_list:
             opened_zipfile.writestr(file, files_ressource.joinpath(file).read_bytes())
 
-        opened_zipfile.writestr('scripts/archipelago/items.lua', ''.join(_generate_lua_items_data(self.items_data)))
-        opened_zipfile.writestr('scripts/archipelago/locations.lua', '\n'.join(_generate_lua_locations_data(self.locations_data)) + '\n')
+        opened_zipfile.writestr('scripts/archipelago/data/items.lua', _to_lua_file(self.items_data))
+        opened_zipfile.writestr('scripts/archipelago/data/locations.lua', _to_lua_file(self.locations_data))
 
 
 def generate_output(world, output_directory: str) -> None:
