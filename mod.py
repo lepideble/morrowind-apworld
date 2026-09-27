@@ -21,10 +21,10 @@ files_list = list(_recursive_list_files(files_ressource))
 
 
 def _generate_lua_items_data(items_data: dict[int, tuple[str, int]]) -> collections.abc.Iterator[str]:
-    yield 'return {\n'
+    yield 'return {'
     for item_id, (item_record_id, item_count) in items_data.items():
-        yield '    [' + str(item_id) + '] = {"' + item_record_id + '", ' + str(item_count) + '},\n'
-    yield '}\n'
+        yield '    [' + str(item_id) + '] = {"' + item_record_id + '", ' + str(item_count) + '},'
+    yield '}'
 
 
 def _generate_lua_locations_data(locations_data: dict[int, tuple[str, int]]) -> collections.abc.Iterator[str]:
@@ -51,7 +51,7 @@ class MorrowindMod(APPlayerContainer):
         for file in files_list:
             opened_zipfile.writestr(file, files_ressource.joinpath(file).read_bytes())
 
-        opened_zipfile.writestr('scripts/archipelago/items.lua', ''.join(_generate_lua_items_data(self.items_data)))
+        opened_zipfile.writestr('scripts/archipelago/data/items.lua', '\n'.join(_generate_lua_items_data(self.items_data)) + '\n')
         opened_zipfile.writestr('scripts/archipelago/locations.lua', '\n'.join(_generate_lua_locations_data(self.locations_data)) + '\n')
 
 

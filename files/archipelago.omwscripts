@@ -1,6 +1,15 @@
-GLOBAL: scripts/archipelago/global.lua
-GLOBAL: scripts/archipelago/receive.lua
+# Update content
 LOAD: scripts/archipelago/locations.lua
-PLAYER: scripts/archipelago/completion.lua
-PLAYER: scripts/archipelago/player.lua
-PLAYER: scripts/archipelago/settings.lua
+
+# Connection managment
+MENU: scripts/archipelago/connection/menu.lua
+PLAYER: scripts/archipelago/connection/player.lua
+GLOBAL: scripts/archipelago/connection/global.lua
+
+# Settings
+MENU: scripts/archipelago/settings.lua
+
+# Receive, send and goal managment
+GLOBAL: scripts/archipelago/receive.lua
+GLOBAL: scripts/archipelago/send.lua
+PLAYER: scripts/archipelago/goal.lua
