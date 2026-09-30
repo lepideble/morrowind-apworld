@@ -1,0 +1,5 @@
+return {
+    interfaceName = 'Archipelago',
+    interface = {
+    },
+}

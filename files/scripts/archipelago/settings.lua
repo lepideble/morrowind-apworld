@@ -3,22 +3,23 @@ local I = require('openmw.interfaces')
 local storage = require('openmw.storage')
 local ui = require('openmw.ui')
 
-local serverGroup = 'SettingsServer'
+local pageName = 'SettingsArchipelagoPage'
+local groupName = 'SettingsArchipelagoServer'
 
 I.Settings.registerPage {
-    key = 'ArchipelagoPage',
+    key = pageName,
     l10n = 'Archipelago',
     name = 'Archipelago',
     description = 'Archipelago Settings',
 }
 
 I.Settings.registerGroup {
-    key = serverGroup,
-    page = 'ArchipelagoPage',
+    key = groupName,
+    page = pageName,
     l10n = 'Archipelago',
     name = 'Server',
     description = 'Archipelago server connection options',
-    permanentStorage = false,
+    permanentStorage = true,
     settings = {
         {
             key = 'address',
@@ -54,14 +55,16 @@ I.Settings.registerGroup {
     },
 }
 
-local server = storage.playerSection(serverGroup)
+local server = storage.playerSection(groupName)
+
+server:set('connect', false)
 
 local function handleConnect()
     local connect = server:get('connect')
 
-    I.Settings.updateRendererArgument(serverGroup, 'address', { disabled = connect })
-    I.Settings.updateRendererArgument(serverGroup, 'slot', { disabled = connect })
-    I.Settings.updateRendererArgument(serverGroup, 'password', { disabled = connect })
+    I.Settings.updateRendererArgument(groupName, 'address', { disabled = connect })
+    I.Settings.updateRendererArgument(groupName, 'slot', { disabled = connect })
+    I.Settings.updateRendererArgument(groupName, 'password', { disabled = connect })
 
     if I.Archipelago.isConnected() ~= connect then
         if connect then
